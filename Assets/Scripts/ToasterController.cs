@@ -38,18 +38,18 @@ public class ToasterController : MonoBehaviour
                
                 SetUpBread();
             }
-            if (hit && hit.collider.GetComponent<StrawbarryController>())
+           /* if (hit && hit.collider.GetComponent<StrawbarryController>())
             {
               
                 strawbarryLayer.SetActive(true);
 
-            }
-            if (hit && hit.collider.GetComponent<ChocolateController>())
+            }*/
+           /* if (hit && hit.collider.GetComponent<ChocolateController>())
             {
                 
                 chocolateLayer.SetActive(true);
 
-            }
+            }*/
 
         }
     }

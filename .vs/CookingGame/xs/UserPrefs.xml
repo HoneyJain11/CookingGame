@@ -1,22 +1,45 @@
 ﻿<Properties StartupConfiguration="{FC74B7CA-8782-3C04-1EFD-F30056E41432}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Plates.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerManager.cs" Line="35" Column="5" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="12" Column="22" />
-      <File FileName="Assets/Scripts/ToasterController.cs" Line="17" Column="4" />
-      <File FileName="Assets/BreadController.cs" Line="30" Column="6" />
+      <File FileName="Assets/Scripts/PlayerManager.cs" Line="15" Column="18" NotebookId="1" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="127" Column="107" NotebookId="1" />
+      <File FileName="Assets/Scripts/Machine.cs" Line="50" Column="7" NotebookId="1" />
+      <File FileName="Assets/Scripts/Plates.cs" Line="21" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/Enum/PlateState.cs" Line="10" Column="1" NotebookId="1" />
+      <File FileName="Assets/GameManager.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/Trays.cs" Line="17" Column="55" NotebookId="1" />
+      <File FileName="Assets/Scripts/ToasterController.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/BreadController.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/Enum/MachineMode.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/Enum/MachineType.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/Timer.cs" Line="7" Column="4" NotebookId="1" />
     </Files>
+    <FloatingWindows>
+      <FloatingWindow WindowId="1" X="797" Y="23" Width="1048" Height="480">
+        <Files>
+          <File FileName="Assets/Scripts/Element.cs" Line="14" Column="83" />
+        </Files>
+      </FloatingWindow>
+    </FloatingWindows>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="CookingGame" expanded="True" selected="True" />
+          <Node name="CookingGame" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Enum" expanded="True" />
+                <Node name="Singleton" expanded="True" />
+                <Node name="Plates.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="919b018f-1f6b-4ba0-a609-426638b792a1" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="195febc0-1286-434b-be2c-a419bfaeaf72" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
