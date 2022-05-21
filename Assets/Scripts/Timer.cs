@@ -3,8 +3,6 @@ public class Timer
 {
 
 
-    public async void StartTimer(int remainigDuration)
-    {
-        
-    }
+   // public async void StartTimer(int remainigDuration)
+   
 }

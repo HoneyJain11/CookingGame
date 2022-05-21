@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets/GameManager.cs" />
     <Compile Include="Assets/Scripts/BreadController.cs" />
+    <Compile Include="Assets/Scripts/Element.cs" />
     <Compile Include="Assets/Scripts/Enum/MachineMode.cs" />
     <Compile Include="Assets/Scripts/Enum/MachineType.cs" />
     <Compile Include="Assets/Scripts/Enum/PlateState.cs" />

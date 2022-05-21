@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Machine : MonoBehaviour
+public class Machine : Element<Machine>
 {
     [SerializeField]
      string machineName;
     [SerializeField]
      MachineType machineType;
-    [SerializeField]
-     Sprite machineSprite;
+    //[SerializeField]
+    // Sprite machineSprite;
     [SerializeField]
     GameObject rawMaterial;
     [SerializeField] GameObject greenTimer;
@@ -26,7 +26,7 @@ public class Machine : MonoBehaviour
     int remainigBurningDuration;
     //[SerializeField] Sprite timerFill;
     int remainigDuration;
-    int spriteSortingOrder = 3;
+   // int spriteSortingOrder = 3;
     Timer timer;
 
     // Getter Setter
@@ -40,13 +40,14 @@ public class Machine : MonoBehaviour
          timer = new Timer();
     }
 
-    private void Start()
-    {
-        //giving proper sprite at runtime to particular machine at giving order in layer
-        this.gameObject.AddComponent<SpriteRenderer>().sprite = machineSprite;
-        this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = spriteSortingOrder;
-        this.gameObject.AddComponent<BoxCollider2D>();
-    }
+
+    /* private void Start()
+     {
+         //giving proper sprite at runtime to particular machine at giving order in layer nad adding collider.
+         this.gameObject.AddComponent<SpriteRenderer>().sprite = machineSprite;
+         this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = spriteSortingOrder;
+         this.gameObject.AddComponent<BoxCollider2D>();
+     }*/
     // when click detect on maching this FN will call.changes machine state to working mode and starts green timer
     public async void OnWorkingMode()
     {

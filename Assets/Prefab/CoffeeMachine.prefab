@@ -553,9 +553,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ed026d501cb4fd182d94b88cab729e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectSprite: {fileID: 21300000, guid: 562df337896334d62acfd5e7e386493d, type: 3}
+  orderInLayer: 3
   machineName: Coffee
   machineType: 1
-  machineSprite: {fileID: 21300000, guid: 562df337896334d62acfd5e7e386493d, type: 3}
   rawMaterial: {fileID: 0}
   greenTimer: {fileID: 27437086}
   burnTimer: {fileID: 1620756710}

@@ -43,4 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0582606db12d34d35926d9a0ed775df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateSprite: {fileID: 21300000, guid: c3b7422a574f94089814b3255cf74854, type: 3}
+  objectSprite: {fileID: 21300000, guid: c3b7422a574f94089814b3255cf74854, type: 3}
+  orderInLayer: 3
+  plateState: 0
