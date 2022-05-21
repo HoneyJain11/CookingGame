@@ -23,14 +23,30 @@ public class LevelManager : GenericSingleton<LevelManager>
     GameObject platesPrefab;
     [SerializeField]
     int platesUnlocked;
+    [SerializeField]
+    ToastBread toastBread;
 
-    
+
     private void Start()
     { //placing all the object on it's specific slots
-        SetLeftMachineItems();
-        SetRightMachineItems();
-        SetPlates();
-        SetTrays();
+
+        //Set LeftTable Objects here eg. Toaster
+        //placing leftside machine on proper leftsideslot.
+        SetTableTopObjects(leftMachineSlots, leftMachinePrefab);
+
+        //Set RightTable Objects here eg.Coffee Machine
+        //placing rightside machine on proper rightsideslot.
+        SetTableTopObjects(rightMachineSlots, rightMachinePrefab);
+        //SetRightMachineItems();
+
+        //Set Tray Objects here eg. strawberry, chocolate, eggs, peanuts
+        //placing tarys on correct slot.needs array of prefabs ex - chocolate tary prefab, peanuts tray prefab. 
+        SetTableTopObjects(traySlots, trayPrefabs);
+
+        // Set Serving Area Objects on Table top here eg. 4 nos. of Plates
+        //placing plates on correct slot.
+        SetTableTopObjects(platesSlots, platesPrefab);
+
     }
     private void Update()
     {
@@ -77,35 +93,39 @@ public class LevelManager : GenericSingleton<LevelManager>
                 hit.collider.GetComponent<Plates>().plateState = PlateState.Unlocked;
                 Debug.Log("platestate -  " + hit.collider.GetComponent<Plates>().plateState);
             }
+            else if (hit && hit.collider != null && hit.collider.GetComponent<CircleCollider2D>())
+            {
+                Debug.Log("collide with main bread -  " );
+                
+            }
 
-            
+
         }
     }
-    //placing leftside machine on proper leftsideslot.
-    private void SetLeftMachineItems()
+    
+    private void SetTableTopObjects(List<GameObject> SpawnSlots, GameObject initiatePrefab )
     {
-        for (int i = 0; i < leftMachineSlots.Count; i++)
+        for (int i = 0; i < SpawnSlots.Count; i++)
         {
-            GameObject leftMachine = Instantiate(leftMachinePrefab);
+            GameObject childGameObject = Instantiate(initiatePrefab);
             Vector3 temp = new Vector3(0f, 0f, 0f);
-            leftMachine.transform.parent = leftMachineSlots[i].transform;
-            leftMachine.transform.localPosition = temp;
+            childGameObject.transform.parent = SpawnSlots[i].transform;
+            childGameObject.transform.localPosition = temp;
 
         }
     }
-    //placing rightside machine on proper rightsideslot.
-    private void SetRightMachineItems()
+
+    private void SetTableTopObjects(List<GameObject> SpawnSlots, List<GameObject> initiatePrefab)
     {
-        for (int i = 0; i < rightMachineSlots.Count; i++)
+        for (int i = 0; i < SpawnSlots.Count; i++)
         {
-            GameObject rightMachine = Instantiate(rightMachinePrefab);
+            GameObject childGameObject = Instantiate(initiatePrefab[i]);
             Vector3 temp = new Vector3(0f, 0f, 0f);
-            rightMachine.transform.parent = rightMachineSlots[i].transform;
-            rightMachine.transform.localPosition = temp;
+            childGameObject.transform.parent = SpawnSlots[i].transform;
+            childGameObject.transform.localPosition = temp;
 
         }
     }
-    //placing plates on correct slot.
     private void SetPlates()
     {
         for (int i = 0; i < platesSlots.Count; i++)
@@ -124,17 +144,9 @@ public class LevelManager : GenericSingleton<LevelManager>
 
         }
     }
-    //placing tarys on correct slot.needs array of prefabs ex - chocolate tary prefab, peanuts tray prefab. 
-    private void SetTrays()
-    {
-        for (int i = 0; i < traySlots.Count; i++)
-        {
-            GameObject tray = Instantiate(trayPrefabs[i]);
-            Vector3 temp = new Vector3(0f, 0f, 0f);
-            tray.transform.parent = traySlots[i].transform;
-            tray.transform.localPosition = temp;
+    
 
-        }
-    }
+   
+
 
 }
