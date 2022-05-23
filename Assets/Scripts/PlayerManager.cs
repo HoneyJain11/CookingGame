@@ -9,8 +9,8 @@ public class PlayerManager : MonoBehaviour
     Vector2 move = Vector2.left;
     [SerializeField]
      float speed;
-    [SerializeField]
-    BreadController breadController;
+  
+//    BreadController breadController;
 
     void Update()
     {
