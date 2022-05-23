@@ -9,10 +9,11 @@ public class Element <T>: MonoBehaviour where T: Element<T>
     [SerializeField]
      int orderInLayer;
 
-    protected void Start()
+    protected virtual void Start()
     {
         this.gameObject.AddComponent<SpriteRenderer>().sprite = objectSprite;
         this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = orderInLayer;
         this.gameObject.AddComponent<BoxCollider2D>();
     }
 }
+

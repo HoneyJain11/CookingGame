@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectSprite: {fileID: 21300000, guid: 43289945380624b6bae6490822de2ddb, type: 3}
-  orderInLayer: 3
+  orderInLayer: 4

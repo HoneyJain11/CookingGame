@@ -7,3 +7,8 @@ public enum PlateState
    Locked,
    Unlocked
 }
+public enum PlateStateBread
+{
+  Free,
+  Occupied
+}

@@ -10,8 +10,6 @@ public class LevelManager : GenericSingleton<LevelManager>
     [SerializeField]
     List<GameObject> rightMachineSlots;
     [SerializeField]
-    List<GameObject> platesSlots;
-    [SerializeField]
     List<GameObject> traySlots;
     [SerializeField]
     List<GameObject> trayPrefabs;
@@ -25,6 +23,14 @@ public class LevelManager : GenericSingleton<LevelManager>
     int platesUnlocked;
     [SerializeField]
     ToastBread toastBread;
+    [SerializeField]
+    BreadSO breadSO;
+
+    [SerializeField]
+    List<ToasterSO> toasterSO;
+    //[SerializeField]
+    //LeftSideMachineSO toasterSO;
+
 
 
     private void Start()
@@ -32,7 +38,7 @@ public class LevelManager : GenericSingleton<LevelManager>
 
         //Set LeftTable Objects here eg. Toaster
         //placing leftside machine on proper leftsideslot.
-        SetTableTopObjects(leftMachineSlots, leftMachinePrefab);
+      //  SetTableTopObjects(leftMachineSlots, breadSO.toastMachinePrefab);
 
         //Set RightTable Objects here eg.Coffee Machine
         //placing rightside machine on proper rightsideslot.
@@ -45,7 +51,7 @@ public class LevelManager : GenericSingleton<LevelManager>
 
         // Set Serving Area Objects on Table top here eg. 4 nos. of Plates
         //placing plates on correct slot.
-        SetTableTopObjects(platesSlots, platesPrefab);
+   
 
     }
     private void Update()
@@ -61,30 +67,10 @@ public class LevelManager : GenericSingleton<LevelManager>
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector3.zero);
             if (hit && hit.collider != null && hit.collider.gameObject.GetComponent<Machine>())
             {
-                Machine temp = hit.collider.gameObject.GetComponent<Machine>();
-
-
-                if (temp.MachineMode == MachineMode.Idle)
-                {
-                    Debug.Log("Machine Name " + hit.collider.name);
-                    temp.OnWorkingMode();
-                }
-                else if (temp.MachineMode == MachineMode.WorkCompleted)
-                {
-
-                    Debug.Log(temp.MachineName + " " + "Work Completed");
-                    temp.OnMachineTap();
-
-                    // Now here your process food is ready to serve.
-                }
-                else if (temp.MachineMode == MachineMode.Working)
-                {
-                    Debug.Log(temp.MachineName + " " + "is Working");
-                }
-                else
-                {
-                    Debug.Log(temp.MachineName + " " + "is Working");
-                }
+                print("Clicked On toaster");
+               int machineId = hit.collider.gameObject.GetComponent<Machine>().machineId;
+                EventHandler.Instance.InvokeOnToasterClickEvent(machineId);
+               
             }
             else if (hit && hit.collider != null && hit.collider.GetComponent<Plates>())
             {
@@ -93,10 +79,14 @@ public class LevelManager : GenericSingleton<LevelManager>
                 hit.collider.GetComponent<Plates>().plateState = PlateState.Unlocked;
                 Debug.Log("platestate -  " + hit.collider.GetComponent<Plates>().plateState);
             }
-            else if (hit && hit.collider != null && hit.collider.GetComponent<CircleCollider2D>())
+
+
+            else if (hit && hit.collider != null && hit.collider.GetComponent<BreadElement>())
             {
-                Debug.Log("collide with main bread -  " );
-                
+                Debug.Log("Click on Bread");
+
+                EventHandler.Instance.InvokeOnBreadClickEvent();
+
             }
 
 
@@ -126,27 +116,20 @@ public class LevelManager : GenericSingleton<LevelManager>
 
         }
     }
-    private void SetPlates()
-    {
-        for (int i = 0; i < platesSlots.Count; i++)
-        {
-            GameObject plates = Instantiate(platesPrefab);
-            Vector3 temp = new Vector3(0f, 0f, 0f);
-            plates.transform.parent = platesSlots[i].transform;
-            plates.transform.localPosition = temp;
-            if(platesUnlocked > 0)
-            {
-                plates.GetComponent<Plates>().plateState = PlateState.Unlocked;
-                platesUnlocked--;
 
-            }
-            Debug.Log("platestate - " + plates.GetComponent<Plates>().plateState);
+
+    private void SetTableTopObjects(List<GameObject> SpawnSlots, GameObject [] initiatePrefab)
+    {
+        for (int i = 0; i < SpawnSlots.Count; i++)
+        {
+            GameObject childGameObject = Instantiate(initiatePrefab[i]);
+            Vector3 temp = new Vector3(0f, 0f, 0f);
+            childGameObject.transform.parent = SpawnSlots[i].transform;
+            childGameObject.transform.localPosition = temp;
 
         }
     }
     
-
-   
-
+    
 
 }

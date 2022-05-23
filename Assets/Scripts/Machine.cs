@@ -5,8 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class Machine : Element<Machine>
 {
+    public int machineId =0;
     [SerializeField]
-     string machineName;
+    string machineName;
     [SerializeField]
      MachineType machineType;
     //[SerializeField]
@@ -28,6 +29,8 @@ public class Machine : Element<Machine>
     int remainigDuration;
    // int spriteSortingOrder = 3;
     Timer timer;
+    [SerializeField]
+    BreadSO breadSO;
 
     // Getter Setter
     #region
@@ -39,7 +42,6 @@ public class Machine : Element<Machine>
     {
          timer = new Timer();
     }
-
 
     /* private void Start()
      {
@@ -61,26 +63,39 @@ public class Machine : Element<Machine>
             Debug.Log("remainigDuration  " + remainigDuration);
         }
         FoodBurning();
+
     }
     // when correect timer will over this FN will call, this FN will set machine state to work completed state and start the burn timer
     private async void FoodBurning()
     {
         MachineMode = MachineMode.WorkCompleted;
+        if(machineType == MachineType.Toaster)
+        {
+            EventHandler.Instance.InvokeOnToasterWorkCompletedEvent();
+
+        }
         remainigBurningDuration = burningDuration;
         greenTimer.SetActive(false);
         burnTimer.SetActive(true);
-        while ((remainigBurningDuration > 0) && (MachineMode == MachineMode.Working))
+        while ((remainigBurningDuration > 0) && (MachineMode == MachineMode.WorkCompleted))
         {
             await new WaitForSeconds(1);
             remainigBurningDuration--;
             Debug.Log("remainigBurningDuration  " + remainigBurningDuration);
         }
+       
     }
     // this FN will work only when green timer stops , and change machine mode to idle and stop burn timer.
     public void OnMachineTap()
     {
         MachineMode = MachineMode.Idle;
         burnTimer.SetActive(false);
+        if (machineType == MachineType.Toaster)
+        {
+            EventHandler.Instance.InvokeSpwanReadyBreadEvent();
+
+        }
+
     }
 
 

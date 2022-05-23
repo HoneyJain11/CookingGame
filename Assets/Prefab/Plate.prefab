@@ -46,3 +46,6 @@ MonoBehaviour:
   objectSprite: {fileID: 21300000, guid: c3b7422a574f94089814b3255cf74854, type: 3}
   orderInLayer: 3
   plateState: 0
+  plateStateBread: 0
+  readyBread: {fileID: 4840882633385304647, guid: 4888760b659ba4513adfbc845f565c3e,
+    type: 3}
