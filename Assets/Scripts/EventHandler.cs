@@ -10,6 +10,10 @@ public class EventHandler : GenericSingleton<EventHandler>
     public event Action <int> OnToasterClick;
     public event Action OnToasterWorkCompleted;
     public event Action SpwanReadyBread;
+    public event Action OnStrawberryClick;
+    public event Action OnChocolateClick;
+    public event Action OnPenautClick;
+    public event Action OnEggClick;
 
     public void InvokeOnBreadClickEvent()
     {
@@ -36,6 +40,25 @@ public class EventHandler : GenericSingleton<EventHandler>
         SpwanReadyBread?.Invoke();
     }
 
+    public void InvokeOnStrawberryClickEvent()
+    {
+        OnStrawberryClick?.Invoke();
+    }
+
+    public void InvokeOnChocolateClickEvent()
+    {
+        OnChocolateClick?.Invoke();
+    }
+
+    public void InvokeOnPenautClickEvent()
+    {
+        OnPenautClick?.Invoke();
+    }
+
+    public void InvokeOnEggClickEvent()
+    {
+        OnEggClick?.Invoke();
+    }
 }
 
 

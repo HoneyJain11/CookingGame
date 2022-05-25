@@ -62,6 +62,7 @@
     <Compile Include="Assets/Scripts/Enum/MachineMode.cs" />
     <Compile Include="Assets/Scripts/Enum/MachineType.cs" />
     <Compile Include="Assets/Scripts/Enum/PlateState.cs" />
+    <Compile Include="Assets/Scripts/Enum/TrayType.cs" />
     <Compile Include="Assets/Scripts/EventHandler.cs" />
     <Compile Include="Assets/Scripts/Level1SO.cs" />
     <Compile Include="Assets/Scripts/LevelManager.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Assets/Scripts/PlateElement.cs" />
     <Compile Include="Assets/Scripts/Plates.cs" />
     <Compile Include="Assets/Scripts/PlayerManager.cs" />
+    <Compile Include="Assets/Scripts/Recipe.cs" />
     <Compile Include="Assets/Scripts/SOScripts/ToasterSO.cs" />
     <Compile Include="Assets/Scripts/Singleton/GenericSingleton.cs" />
     <Compile Include="Assets/Scripts/Timer.cs" />

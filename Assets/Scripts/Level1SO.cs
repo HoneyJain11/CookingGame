@@ -53,3 +53,4 @@ public class LeftSideMachineSO : ScriptableObject
 {
     public List <GameObject> leftSideMachinePrefab;
 }
+

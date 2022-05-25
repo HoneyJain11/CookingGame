@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectSprite: {fileID: 21300000, guid: e6df03a61afd24a9ebf02ad0df60a55a, type: 3}
   orderInLayer: 3
+  trayType: 2
 --- !u!1 &8205258128897009382
 GameObject:
   m_ObjectHideFlags: 0

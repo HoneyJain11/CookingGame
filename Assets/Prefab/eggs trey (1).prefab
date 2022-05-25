@@ -127,3 +127,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectSprite: {fileID: 21300000, guid: b2adb6ffa61d345a39d12cf5cc8084da, type: 3}
   orderInLayer: 3
+  trayType: 3

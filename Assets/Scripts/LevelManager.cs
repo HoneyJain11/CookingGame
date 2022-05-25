@@ -89,6 +89,31 @@ public class LevelManager : GenericSingleton<LevelManager>
 
             }
 
+            else if (hit && hit.collider != null && hit.collider.GetComponent<Trays>())
+            {
+                if (hit.collider.GetComponent<Trays>().trayType == TrayType.StrawberryTray)
+                {
+                    Debug.Log("hit with strawberry Tray");
+                    EventHandler.Instance.InvokeOnStrawberryClickEvent();
+                }
+                else if (hit.collider.GetComponent<Trays>().trayType == TrayType.ChocolateTray)
+                {
+                    Debug.Log("hit with chocolate Tray");
+                    EventHandler.Instance.InvokeOnChocolateClickEvent();
+                }
+                else if (hit.collider.GetComponent<Trays>().trayType == TrayType.PeanutTray)
+                {
+                    Debug.Log("hit with Penaut Tray");
+                    EventHandler.Instance.InvokeOnPenautClickEvent();
+                }
+                else if (hit.collider.GetComponent<Trays>().trayType == TrayType.EggTray)
+                {
+                    Debug.Log("hit with egg Tray");
+                    EventHandler.Instance.InvokeOnEggClickEvent();
+                }
+
+            }
+
 
         }
     }
