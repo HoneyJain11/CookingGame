@@ -14,6 +14,7 @@ public class EventHandler : GenericSingleton<EventHandler>
     public event Action OnChocolateClick;
     public event Action OnPenautClick;
     public event Action OnEggClick;
+    public event Action <GameObject> OnReadyBreadClick;
 
     public void InvokeOnBreadClickEvent()
     {
@@ -58,6 +59,11 @@ public class EventHandler : GenericSingleton<EventHandler>
     public void InvokeOnEggClickEvent()
     {
         OnEggClick?.Invoke();
+    }
+
+    public void InvokeOnReadyBreadClickEvent(GameObject gameObject)
+    {
+        OnReadyBreadClick?.Invoke(gameObject);
     }
 }
 

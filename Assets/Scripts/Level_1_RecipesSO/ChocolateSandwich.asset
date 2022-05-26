@@ -16,3 +16,4 @@ MonoBehaviour:
   childImages:
   - {fileID: 21300000, guid: d6b649795d1f54b3c9e916c814602d12, type: 3}
   - {fileID: 21300000, guid: 6197296e3f57a46e7a680b40f993c094, type: 3}
+  recipeId: 2

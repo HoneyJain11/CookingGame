@@ -78,6 +78,8 @@ public class LevelManager : GenericSingleton<LevelManager>
                 if(hit.collider.GetComponent<Plates>().plateState != PlateState.Unlocked)
                 hit.collider.GetComponent<Plates>().plateState = PlateState.Unlocked;
                 Debug.Log("platestate -  " + hit.collider.GetComponent<Plates>().plateState);
+                GameObject gameObject = hit.collider.gameObject;
+                EventHandler.Instance.InvokeOnReadyBreadClickEvent(gameObject);
             }
 
 

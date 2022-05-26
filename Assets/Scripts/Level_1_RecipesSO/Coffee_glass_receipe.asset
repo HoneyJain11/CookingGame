@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentImage: {fileID: 21300000, guid: cf015260354884e0d98255f3eb9c9118, type: 3}
   childImages: []
+  recipeId: 3

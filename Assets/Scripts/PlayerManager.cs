@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
             {
                 GameObject childObject = Instantiate(emptyGameObject);
                 childObject.AddComponent<SpriteRenderer>().sprite = RecipeSO[i].childImages[j];
-                childObject.GetComponent<SpriteRenderer>().sortingOrder = khalikhoka.GetComponent<SpriteRenderer>().sortingOrder + 1;
+                childObject.GetComponent<SpriteRenderer>().sortingOrder = khalikhoka.GetComponent<SpriteRenderer>().sortingOrder + 1 + j;
                 childObject.transform.parent = khalikhoka.gameObject.transform;
                 childObject.transform.localPosition = new Vector3(0f, 0f, 0f);
 
