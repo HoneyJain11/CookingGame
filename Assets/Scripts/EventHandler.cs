@@ -15,6 +15,10 @@ public class EventHandler : GenericSingleton<EventHandler>
     public event Action OnPenautClick;
     public event Action OnEggClick;
     public event Action <GameObject> OnReadyBreadClick;
+    public event Action OnCoffeeMachineWorkCompleted;
+    public event Action <GameObject> OnStartCoffeeMachineAnimation;
+    public event Action OnFindFreeCoffeeMachine;
+    public event Action <int> OnCoffeeMachineClick;
 
     public void InvokeOnBreadClickEvent()
     {
@@ -64,6 +68,26 @@ public class EventHandler : GenericSingleton<EventHandler>
     public void InvokeOnReadyBreadClickEvent(GameObject gameObject)
     {
         OnReadyBreadClick?.Invoke(gameObject);
+    }
+
+    public void InvokeCoffeeMachineWorkCompleted()
+    {
+        OnCoffeeMachineWorkCompleted?.Invoke();
+    }
+
+    public void InvokeCoffeeMachineAnimation(GameObject gameObject)
+    {
+        OnStartCoffeeMachineAnimation?.Invoke(gameObject);
+    }
+
+    public void InvokeFindFreeCoffeeMachine()
+    {
+        OnFindFreeCoffeeMachine?.Invoke();
+    }
+
+    public void InvokeOnCoffeeMachineClickEvent(int machineId)
+    {
+        OnCoffeeMachineClick?.Invoke(machineId);
     }
 }
 

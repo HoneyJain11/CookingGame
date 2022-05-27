@@ -3062,6 +3062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1485375516}
+  - component: {fileID: 1485375517}
   m_Layer: 0
   m_Name: RightMachineHolder
   m_TagString: Untagged
@@ -3085,6 +3086,34 @@ Transform:
   m_Father: {fileID: 1767843055}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1485375517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485375515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ffcf56f85a384ecfba78a878651f60c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coffeeMachinePrefab: {fileID: 3481299251277142519, guid: 97845e77a673f4741826f0815b9d513f,
+    type: 3}
+  rightMachineSlots:
+  - {fileID: 1665291927}
+  - {fileID: 1359591516}
+  coffeeGlassPrefab: {fileID: 8980145079192346278, guid: ec05f74c281d34b5e852d76c2c009433,
+    type: 3}
+  fullCoffeeGlass: {fileID: 21300000, guid: cf015260354884e0d98255f3eb9c9118, type: 3}
+  recipeSO: {fileID: 11400000, guid: 23815467a3f8d44249f10a96c393acee, type: 2}
+  coffeeAnimatioPrefab: {fileID: 6225443370422499080, guid: daf56f9bed74b4266856dd1e754ad4ab,
+    type: 3}
+  coffeeAnimationSprite:
+  - {fileID: 21300000, guid: c9fa8681952be46b08ceb490a2c96cc9, type: 3}
+  - {fileID: 21300000, guid: 31d97d09d0c8a4adcb88206fbf642359, type: 3}
+  - {fileID: 21300000, guid: 93fdc0d418d6f4e72847a72dc1edad31, type: 3}
+  coffeeAnimationDuration: 10
 --- !u!1 &1521836701
 GameObject:
   m_ObjectHideFlags: 0

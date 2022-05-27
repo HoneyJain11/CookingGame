@@ -9,12 +9,12 @@ public class Machine : Element<Machine>
     [SerializeField]
     string machineName;
     [SerializeField]
-     MachineType machineType;
+    public MachineType machineType;
     //[SerializeField]
     // Sprite machineSprite;
     [SerializeField]
     GameObject rawMaterial;
-    [SerializeField] GameObject greenTimer;
+    [SerializeField]public GameObject greenTimer;
     [SerializeField] GameObject burnTimer;
     //GameObject animaton;
     //GameObject[] machines;
@@ -56,13 +56,29 @@ public class Machine : Element<Machine>
         remainigDuration = duration;
         MachineMode = MachineMode.Working;
         greenTimer.SetActive(true);
+        if (machineType == MachineType.CoffeeMachine)
+        {
+            Debug.Log("In Invoke find Free FreeCoffeeMachine");
+            EventHandler.Instance.InvokeFindFreeCoffeeMachine();
+        }
         while (remainigDuration > 0)
         {
             await new WaitForSeconds(1);
             remainigDuration--;
             Debug.Log("remainigDuration  " + remainigDuration);
         }
-        FoodBurning();
+        if (machineType == MachineType.Toaster)
+        {
+            Debug.Log("In working mode in toaster condition");
+            FoodBurning();
+        }
+        else if(machineType == MachineType.CoffeeMachine)
+        {
+            Debug.Log("In working mode in coffee condition");
+            MachineMode = MachineMode.WorkCompleted;
+            EventHandler.Instance.InvokeCoffeeMachineWorkCompleted();
+        }
+            
 
     }
     // when correect timer will over this FN will call, this FN will set machine state to work completed state and start the burn timer
@@ -89,9 +105,16 @@ public class Machine : Element<Machine>
     public void OnMachineTap()
     {
         MachineMode = MachineMode.Idle;
-        burnTimer.SetActive(false);
-        if (machineType == MachineType.Toaster)
+        if (machineType == MachineType.CoffeeMachine)
         {
+
+
+            Debug.Log("In Coffee machine idle condition");
+        }
+
+            if (machineType == MachineType.Toaster)
+        {
+            burnTimer.SetActive(false);
             EventHandler.Instance.InvokeSpwanReadyBreadEvent();
 
         }

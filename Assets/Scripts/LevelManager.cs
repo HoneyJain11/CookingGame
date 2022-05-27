@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,7 +43,7 @@ public class LevelManager : GenericSingleton<LevelManager>
 
         //Set RightTable Objects here eg.Coffee Machine
         //placing rightside machine on proper rightsideslot.
-        SetTableTopObjects(rightMachineSlots, rightMachinePrefab);
+        //SetTableTopObjects(rightMachineSlots, rightMachinePrefab);
         //SetRightMachineItems();
 
         //Set Tray Objects here eg. strawberry, chocolate, eggs, peanuts
@@ -65,60 +66,76 @@ public class LevelManager : GenericSingleton<LevelManager>
         {
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector3.zero);
-            if (hit && hit.collider != null && hit.collider.gameObject.GetComponent<Machine>())
+
+            if(hit && hit.collider != null )
             {
-                print("Clicked On toaster");
-               int machineId = hit.collider.gameObject.GetComponent<Machine>().machineId;
-                EventHandler.Instance.InvokeOnToasterClickEvent(machineId);
-               
-            }
-            else if (hit && hit.collider != null && hit.collider.GetComponent<Plates>())
-            {
-                Debug.Log("platestate -  " + hit.collider.GetComponent<Plates>().plateState);
-                if(hit.collider.GetComponent<Plates>().plateState != PlateState.Unlocked)
-                hit.collider.GetComponent<Plates>().plateState = PlateState.Unlocked;
-                Debug.Log("platestate -  " + hit.collider.GetComponent<Plates>().plateState);
-                GameObject gameObject = hit.collider.gameObject;
-                EventHandler.Instance.InvokeOnReadyBreadClickEvent(gameObject);
-            }
+                          
+                    if ( hit.collider.GetComponent<BreadElement>()!=null)
+                     {
+                         Debug.Log("Click on Bread");
 
+                         EventHandler.Instance.InvokeOnBreadClickEvent();
 
-            else if (hit && hit.collider != null && hit.collider.GetComponent<BreadElement>())
-            {
-                Debug.Log("Click on Bread");
+                     }
 
-                EventHandler.Instance.InvokeOnBreadClickEvent();
+                     else if(hit.collider.GetComponent<Machine>()!=null && hit.collider.GetComponent<Machine>().machineType == MachineType.Toaster)
+                     {
+                         print("Clicked On toaster");
+                        int machineId = hit.collider.GetComponent<Machine>().machineId;
+                         EventHandler.Instance.InvokeOnToasterClickEvent(machineId);
 
-            }
+                     }
+                     else if(hit.collider.GetComponent<Machine>() != null && hit.collider.GetComponent<Machine>().machineType == MachineType.CoffeeMachine)
+                     {
+                         print("Clicked On coffe machine");
+                         int machineId = hit.collider.GetComponent<Machine>().machineId;
+                         EventHandler.Instance.InvokeOnCoffeeMachineClickEvent(machineId);
+                     }
+                     else if (hit.collider.GetComponent<Plates>() != null)
+                     {
+                         Debug.Log("platestate -  " + hit.collider.GetComponent<Plates>().plateState);
+                         if(hit.collider.GetComponent<Plates>().plateState != PlateState.Unlocked)
+                         hit.collider.GetComponent<Plates>().plateState = PlateState.Unlocked;
+                         Debug.Log("platestate -  " + hit.collider.GetComponent<Plates>().plateState);
+                         GameObject gameObject = hit.collider.gameObject;
+                         EventHandler.Instance.InvokeOnReadyBreadClickEvent(gameObject);
+                     }
 
-            else if (hit && hit.collider != null && hit.collider.GetComponent<Trays>())
-            {
-                if (hit.collider.GetComponent<Trays>().trayType == TrayType.StrawberryTray)
-                {
-                    Debug.Log("hit with strawberry Tray");
-                    EventHandler.Instance.InvokeOnStrawberryClickEvent();
+                     else if (hit.collider.GetComponent<Trays>() != null)
+                     {
+                         if (hit.collider.GetComponent<Trays>().trayType == TrayType.StrawberryTray)
+                         {
+                             Debug.Log("hit with strawberry Tray");
+                             EventHandler.Instance.InvokeOnStrawberryClickEvent();
+                         }
+                         else if (hit.collider.GetComponent<Trays>().trayType == TrayType.ChocolateTray)
+                         {
+                             Debug.Log("hit with chocolate Tray");
+                             EventHandler.Instance.InvokeOnChocolateClickEvent();
+                         }
+                         else if (hit.collider.GetComponent<Trays>().trayType == TrayType.PeanutTray)
+                         {
+                             Debug.Log("hit with Penaut Tray");
+                             EventHandler.Instance.InvokeOnPenautClickEvent();
+                         }
+                         else if (hit.collider.GetComponent<Trays>().trayType == TrayType.EggTray)
+                         {
+                             Debug.Log("hit with egg Tray");
+                             EventHandler.Instance.InvokeOnEggClickEvent();
+                         }
+
+                     }
+                    else
+                    {
+                        Handheld.Vibrate();
+                    }
                 }
-                else if (hit.collider.GetComponent<Trays>().trayType == TrayType.ChocolateTray)
-                {
-                    Debug.Log("hit with chocolate Tray");
-                    EventHandler.Instance.InvokeOnChocolateClickEvent();
-                }
-                else if (hit.collider.GetComponent<Trays>().trayType == TrayType.PeanutTray)
-                {
-                    Debug.Log("hit with Penaut Tray");
-                    EventHandler.Instance.InvokeOnPenautClickEvent();
-                }
-                else if (hit.collider.GetComponent<Trays>().trayType == TrayType.EggTray)
-                {
-                    Debug.Log("hit with egg Tray");
-                    EventHandler.Instance.InvokeOnEggClickEvent();
-                }
-
+                
             }
-
-
+           
         }
-    }
+        
+    
     
     private void SetTableTopObjects(List<GameObject> SpawnSlots, GameObject initiatePrefab )
     {

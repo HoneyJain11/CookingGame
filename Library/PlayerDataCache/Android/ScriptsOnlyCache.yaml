@@ -3,12 +3,19 @@ ScriptsOnlyBuild:
     Assembly-CSharp-firstpass.dll:
     - UnityAsyncAwaitUtil.AsyncCoroutineRunner
     Assembly-CSharp.dll:
-    - BreadController
-    - ChocolateController
+    - BreadElement
+    - EventHandler
+    - GameManager
     - LevelManager
+    - Machine
+    - PlateElement
+    - Plates
     - PlayerManager
-    - StrawbarryController
-    - ToasterController
+    - Recipe
+    - ToastBread
+    - ToasterElement
+    - ToasterSO
+    - Trays
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
@@ -52,17 +59,37 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11690}
+      Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 12244}
+      Script: {instanceID: 11528}
     - Class: 114
-      Script: {instanceID: 12616}
+      Script: {instanceID: 11576}
     - Class: 114
-      Script: {instanceID: 13366}
+      Script: {instanceID: 11706}
     - Class: 114
-      Script: {instanceID: 13800}
+      Script: {instanceID: 11774}
     - Class: 114
-      Script: {instanceID: 13978}
+      Script: {instanceID: 12278}
+    - Class: 114
+      Script: {instanceID: 12854}
+    - Class: 114
+      Script: {instanceID: 13882}
+    - Class: 114
+      Script: {instanceID: 13938}
+    - Class: 114
+      Script: {instanceID: 14002}
+    - Class: 114
+      Script: {instanceID: 14070}
+    - Class: 114
+      Script: {instanceID: 14214}
+    - Class: 114
+      Script: {instanceID: 14216}
+    - Class: 114
+      Script: {instanceID: 14722}
+    - Class: 114
+      Script: {instanceID: 15276}
+    - Class: 114
+      Script: {instanceID: 15332}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -72,6 +99,8 @@ ScriptsOnlyBuild:
     - Class: 212
       Script: {instanceID: 0}
     - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -106,10 +135,22 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
+      Hash: 450387cee2ccfd8ecffb66b673ea4897
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Trays
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: PlayerQuitHandler
+  - hash:
+      serializedVersion: 2
+      Hash: cbefb509142f30834aa8f0841612579b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameManager
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -160,10 +201,10 @@ ScriptsOnlyBuild:
     className: Image
   - hash:
       serializedVersion: 2
-      Hash: 65b3a3b9a7779d539ec75a3ceddebdba
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: BreadController
+    className: BreadElement
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -182,6 +223,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_InputField
+  - hash:
+      serializedVersion: 2
+      Hash: be0c81f63263f037b3979c60708e2549
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlateElement
   - hash:
       serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
@@ -274,7 +321,7 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: 9de0c56b19ca809c8a356bcfe5e8c08f
+      Hash: 5843d11fd4cf387589745188f6f89050
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerManager
@@ -334,12 +381,6 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ChocolateController
-  - hash:
-      serializedVersion: 2
       Hash: d4020bafcd3ccbb5601a6e6c8ac78be0
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -350,6 +391,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EventHandler
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -392,12 +439,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: StrawbarryController
   - hash:
       serializedVersion: 2
       Hash: 71b711096c6c32621c1d4c02310898b7
@@ -466,10 +507,16 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: 3898c73997004b9c79e00f94e1255ba0
+      Hash: 7d1d2b4ad86ef8e8d5202840deaca486
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: ToasterController
+    className: ToasterElement
+  - hash:
+      serializedVersion: 2
+      Hash: 3f43fd33507c1797b00a29530d80ce39
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ToastBread
   - hash:
       serializedVersion: 2
       Hash: f336e086360abe49a3323e5f1583c35a
@@ -484,16 +531,40 @@ ScriptsOnlyBuild:
     className: GraphicRaycaster
   - hash:
       serializedVersion: 2
+      Hash: 942a1204a9b4e9ce31981ed25818bfe4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Recipe
+  - hash:
+      serializedVersion: 2
       Hash: 8e6ceabfd38a184413d69b7db56c89cc
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 4a3ea66db5ae24b990b81d024c7301d3
+      Hash: c160f97a67298e03220558d435986785
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LevelManager
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Level1SO
+  - hash:
+      serializedVersion: 2
+      Hash: 7b5de6a9121455e030165593bcda2dc9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Plates
+  - hash:
+      serializedVersion: 2
+      Hash: a645149e286cd9fbade83c59e63f36ab
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Machine
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -604,6 +675,12 @@ ScriptsOnlyBuild:
     className: ToggleGroup
   - hash:
       serializedVersion: 2
+      Hash: 05bbd9fa120d9b33cedd37b1613a6145
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ToasterSO
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -611,4 +688,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/GameScene.unity
-  playerPath: /Volumes/HDD3/CookinGameApk/cookingGame.apk
+  playerPath: /Volumes/HDD3/CookinGameApk/cookingGamewithoutSpriteAtlas.apk

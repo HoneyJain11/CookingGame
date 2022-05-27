@@ -1,20 +1,25 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Enum/TrayType.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ToasterElement.cs">
     <Files>
-      <File FileName="Assets/Scripts/ToastBread.cs" Line="16" Column="1" />
+      <File FileName="Assets/Scripts/CoffeeMachineElement.cs" Line="40" Column="1" IsPinned="True" />
+      <File FileName="Assets/Scripts/ToastBread.cs" Line="7" Column="5" />
       <File FileName="Assets/Scripts/Element.cs" Line="20" Column="1" />
       <File FileName="Assets/Scripts/Plates.cs" Line="23" Column="5" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="18" Column="21" />
-      <File FileName="Assets/Scripts/Machine.cs" Line="14" Column="29" />
-      <File FileName="Assets/Scripts/Level1SO.cs" Line="5" Column="41" />
-      <File FileName="Assets/Scripts/BreadElement.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/EventHandler.cs" Line="52" Column="6" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="43" Column="1" />
+      <File FileName="Assets/Scripts/Machine.cs" Line="11" Column="21" />
+      <File FileName="Assets/Scripts/BreadElement.cs" Line="12" Column="25" />
+      <File FileName="Assets/Scripts/EventHandler.cs" Line="56" Column="1" />
       <File FileName="Assets/Scripts/Enum/PlateState.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlateElement.cs" Line="88" Column="1" />
-      <File FileName="Assets/Scripts/Recipe.cs" Line="16" Column="1" />
-      <File FileName="Assets/Scripts/PlayerManager.cs" Line="16" Column="32" />
+      <File FileName="Assets/Scripts/PlateElement.cs" Line="172" Column="1" />
+      <File FileName="Assets/Scripts/Recipe.cs" Line="11" Column="4" />
+      <File FileName="Assets/Scripts/PlayerManager.cs" Line="52" Column="1" />
       <File FileName="Assets/Scripts/Trays.cs" Line="11" Column="1" />
       <File FileName="Assets/Scripts/Enum/TrayType.cs" Line="12" Column="1" />
+      <File FileName="Assets/Scripts/Enum/MachineMode.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Enum/MachineType.cs" Line="10" Column="1" />
+      <File FileName="Assets/Scripts/CoffeeGlass.cs" Line="15" Column="1" />
+      <File FileName="Assets/Scripts/ToasterElement.cs" Line="35" Column="23" />
+      <File FileName="Assets/Scripts/Singleton/GenericSingleton.cs" Line="19" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,20 +28,25 @@
             <Node name="Assembly-CSharp" expanded="True">
               <Node name="Assets" expanded="True">
                 <Node name="Scripts" expanded="True">
-                  <Node name="Enum" expanded="True">
-                    <Node name="TrayType.cs" selected="True" />
-                  </Node>
+                  <Node name="Enum" expanded="True" />
+                  <Node name="Singleton" expanded="True" />
+                  <Node name="ToasterElement.cs" selected="True" />
                 </Node>
               </Node>
             </Node>
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>hit.collider</Value>
+        </State>
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="a17499ce-213e-4d30-af7b-243c4745152f" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e0772220-ba7e-4393-8d9b-b740de601c49" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
