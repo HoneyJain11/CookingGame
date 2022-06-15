@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8443d3df3a7b74f59b3dc476f4d444e9, type: 3}
+  m_Name: ToasterSO1
+  m_EditorClassIdentifier: 
+  machineId: 1
+  machineName: Toaster01
+  machineType: 0
+  machineMode: 1
+  duration: 5
+  burningDuration: 5
+  toasterPrefab: {fileID: 561059025688020246, guid: c53a171f1dcab4e028ecef30e4d6f1e7,
+    type: 3}
+  objectSprite: {fileID: 21300000, guid: fc1f0b8bd0fba40acac8054ba3327b8a, type: 3}
+  orderInLayer: 3

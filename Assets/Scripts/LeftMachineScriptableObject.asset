@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: LeftMachineScriptableObject
+  m_EditorClassIdentifier: Assembly-CSharp::LeftSideMachineSO
+  leftSideMachinePrefab:
+  - {fileID: 5433069225935594430, guid: 6f3b71892c4834539960ae1b3c6031d0, type: 3}
+  - {fileID: 5433069225935594430, guid: d8b3787ae30cd43f78d595ac385aaf78, type: 3}
+  - {fileID: 5433069225935594430, guid: 39d6de03a76be41feafc25560636ef9c, type: 3}
+  - {fileID: 5433069225935594430, guid: 81765583661b049b1883f7bf7292913e, type: 3}

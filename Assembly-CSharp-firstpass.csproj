@@ -635,6 +635,9 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.DeviceSimulator.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.DeviceSimulator.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>

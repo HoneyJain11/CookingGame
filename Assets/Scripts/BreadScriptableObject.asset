@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: BreadScriptableObject
+  m_EditorClassIdentifier: Assembly-CSharp::BreadSO
+  toastBreadPrefab: {fileID: 1396412434495849003, guid: 827263f04ab8e4d719cf8c421dc84050,
+    type: 3}
+  plateBreadPrefab: {fileID: 4840882633385304647, guid: 4888760b659ba4513adfbc845f565c3e,
+    type: 3}
+  toastMachinePrefab:
+  - {fileID: 5433069225935594430, guid: d8b3787ae30cd43f78d595ac385aaf78, type: 3}
+  - {fileID: 5433069225935594430, guid: 39d6de03a76be41feafc25560636ef9c, type: 3}
+  - {fileID: 5433069225935594430, guid: 81765583661b049b1883f7bf7292913e, type: 3}
+  - {fileID: 5433069225935594430, guid: d3fddd875e64747bc822c0febdf036c5, type: 3}

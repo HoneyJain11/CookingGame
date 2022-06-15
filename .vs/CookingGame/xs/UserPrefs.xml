@@ -1,22 +1,46 @@
 ﻿<Properties StartupConfiguration="{FC74B7CA-8782-3C04-1EFD-F30056E41432}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CoffeeMachineElement.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerManager.cs" Line="35" Column="5" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="12" Column="22" />
-      <File FileName="Assets/Scripts/ToasterController.cs" Line="17" Column="4" />
-      <File FileName="Assets/BreadController.cs" Line="30" Column="6" />
+      <File FileName="Assets/Scripts/CoffeeMachineElement.cs" Line="10" Column="21" />
+      <File FileName="Assets/Scripts/Enum/PlayerState.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="45" Column="62" />
+      <File FileName="Assets/GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlateElement.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CustomerManager.cs" Line="93" Column="43" />
+      <File FileName="Assets/MenuListManager.cs" Line="44" Column="59" />
+      <File FileName="Assets/Scripts/EventHandler.cs" Line="23" Column="51" />
+      <File FileName="Assets/Scripts/Singleton/GenericSingleton.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/BreadElement.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Machine.cs" Line="13" Column="23" />
+      <File FileName="Assets/Scripts/Element.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Plates.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ToasterElement.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CustomerSlotManager.cs" Line="10" Column="47" />
+      <File FileName="Assets/Scripts/ObjectPooling/CustomerPooler.cs" Line="33" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="CookingGame" expanded="True" selected="True" />
+          <Node name="CookingGame" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Enum" expanded="True" />
+                <Node name="ObjectPooling" expanded="True" />
+                <Node name="Singleton" expanded="True" />
+                <Node name="CoffeeMachineElement.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="919b018f-1f6b-4ba0-a609-426638b792a1" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="69b2637a-9202-4f4d-8a08-7635646ca381" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
