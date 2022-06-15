@@ -30,7 +30,7 @@ public class CoffeeMachineElement : MonoBehaviour
     {
         EventHandler.Instance.OnCoffeeMachineWorkCompleted += ChangeGlass;
         EventHandler.Instance.OnFindFreeCoffeeMachine += CoffeeMachineAnimation;
-        EventHandler.Instance.OnStartCoffeeMachineAnimation += startCoffeeAnimation;
+        EventHandler.Instance.OnStartCoffeeMachineAnimation += StartCoffeeAnimation;
         EventHandler.Instance.OnCoffeeMachineClick += CoffeeMachineClick;
         remaingcoffeeAnimationDuration = coffeeAnimationDuration;
         coffeeMachineList = new List<GameObject>();
@@ -75,7 +75,7 @@ public class CoffeeMachineElement : MonoBehaviour
         
     }
 
-    private async void startCoffeeAnimation(GameObject gameObject)
+    private async void StartCoffeeAnimation(GameObject gameObject)
     {
         Debug.Log("In startCoffeeAnimation ");
         if(remaingcoffeeAnimationDuration >= 0)
@@ -89,7 +89,7 @@ public class CoffeeMachineElement : MonoBehaviour
             }
             
             remaingcoffeeAnimationDuration--;
-            startCoffeeAnimation(gameObject);
+            StartCoffeeAnimation(gameObject);
         }
         else
         {
@@ -149,7 +149,10 @@ public class CoffeeMachineElement : MonoBehaviour
     {
         EventHandler.Instance.OnCoffeeMachineWorkCompleted -= ChangeGlass;
         EventHandler.Instance.OnFindFreeCoffeeMachine -= CoffeeMachineAnimation;
-        EventHandler.Instance.OnStartCoffeeMachineAnimation -= startCoffeeAnimation;
+        EventHandler.Instance.OnStartCoffeeMachineAnimation -= StartCoffeeAnimation;
         EventHandler.Instance.OnCoffeeMachineClick -= CoffeeMachineClick;
     }
+
+
+
 }

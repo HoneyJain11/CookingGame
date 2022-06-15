@@ -29,18 +29,20 @@ public class LevelManager : GenericSingleton<LevelManager>
 
     [SerializeField]
     List<ToasterSO> toasterSO;
+    [SerializeField]
+    int maxRecipeItem;
+    [SerializeField]
+    List<Recipe> recipesSO;
     //[SerializeField]
     //LeftSideMachineSO toasterSO;
 
 
-
     private void Start()
-    { //placing all the object on it's specific slots
-
-        //Set LeftTable Objects here eg. Toaster
-        //placing leftside machine on proper leftsideslot.
+    { //placing all the object on it's specific slot
+      //Set LeftTable Objects here eg. Toaster
+      //placing leftside machine on proper leftsideslot.
       //  SetTableTopObjects(leftMachineSlots, breadSO.toastMachinePrefab);
-
+        EventHandler.Instance.InvokeGiveRecipeSOToMenuManager(recipesSO , maxRecipeItem);
         //Set RightTable Objects here eg.Coffee Machine
         //placing rightside machine on proper rightsideslot.
         //SetTableTopObjects(rightMachineSlots, rightMachinePrefab);
@@ -49,7 +51,7 @@ public class LevelManager : GenericSingleton<LevelManager>
         //Set Tray Objects here eg. strawberry, chocolate, eggs, peanuts
         //placing tarys on correct slot.needs array of prefabs ex - chocolate tary prefab, peanuts tray prefab. 
         SetTableTopObjects(traySlots, trayPrefabs);
-
+        
         // Set Serving Area Objects on Table top here eg. 4 nos. of Plates
         //placing plates on correct slot.
    
