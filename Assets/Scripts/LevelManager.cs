@@ -91,7 +91,8 @@ public class LevelManager : GenericSingleton<LevelManager>
                      {
                          print("Clicked On coffe machine");
                          int machineId = hit.collider.GetComponent<Machine>().machineId;
-                         EventHandler.Instance.InvokeOnCoffeeMachineClickEvent(machineId);
+                         GameObject gameObject = hit.collider.gameObject;
+                         EventHandler.Instance.InvokeOnReadyBreadClickEvent(gameObject);
                      }
                      else if (hit.collider.GetComponent<Plates>() != null)
                      {
@@ -99,9 +100,11 @@ public class LevelManager : GenericSingleton<LevelManager>
                          if(hit.collider.GetComponent<Plates>().plateState != PlateState.Unlocked)
                          hit.collider.GetComponent<Plates>().plateState = PlateState.Unlocked;
                          Debug.Log("platestate -  " + hit.collider.GetComponent<Plates>().plateState);
+                         Debug.Log("hit gameobject -  " + hit.collider.gameObject);
                          GameObject gameObject = hit.collider.gameObject;
                          EventHandler.Instance.InvokeOnReadyBreadClickEvent(gameObject);
                      }
+
 
                      else if (hit.collider.GetComponent<Trays>() != null)
                      {

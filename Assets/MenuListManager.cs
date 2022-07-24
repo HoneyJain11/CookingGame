@@ -6,9 +6,11 @@ using UnityEngine;
 public class MenuListManager : MonoBehaviour
 {
     List<Recipe> RecipeSO;
-    List<Recipe> orderList;
-    List<Recipe> tempList;
+    List<Order> orderMasterList;
+    List<Recipe> itemList;
     int maxRecipeItem;
+    int j = 0;
+   
 
     private void OnEnable()
     {
@@ -17,31 +19,46 @@ public class MenuListManager : MonoBehaviour
     }
     private void Start()
     {
-        orderList = new List<Recipe>();
-        orderList.Clear();
+        orderMasterList = new List<Order>();
+        orderMasterList.Clear();
 
     }
     private void GiveMenuItemsToCustomer()
     {
-        tempList=GetRandom(RecipeSO);
-        for (int i =0;i< tempList.Count;i++)
+        itemList=GetRandom(RecipeSO);
+        for (int i =0;i< itemList.Count;i++)
         {
-            print("Menu Items To Customer " + tempList[i].recipeId);
+            print("Menu Items To Customer " + itemList[i].recipeId);
         }
         SendMenuItemsToCustomer();
     }
 
+
     private void SendMenuItemsToCustomer()
     {
-        for(int i =0; i < tempList.Count;i++)
+        List<Recipe> orderList = new List<Recipe>();
+        List<bool> isItemDelivered = new List<bool>();
+        j++; 
+        int recipeItemNo = Random.Range(1, maxRecipeItem);
+        for (int i =0; i < recipeItemNo; i++)
         {
-            orderList.Add(tempList[i]);
+            orderList.Add(itemList[i]);
+            isItemDelivered.Add(false);
+
+
         }
-        for (int i = 0; i < orderList.Count; i++)
+        Order order = new Order(j, orderList , isItemDelivered);
+        orderMasterList.Add(order);
+        for (int i = 0; i < orderMasterList.Count; i++)
         {
-            print("Total Ordered Menu Items " + orderList[i].recipeId);
+            print("Total Ordered Menu Items " + orderMasterList[i].OrderID);
         }
-        EventHandler.Instance.InvokeSendMenuListToCustomer(tempList, Random.Range(1, maxRecipeItem));
+
+
+        // Order List will be pass here with same orderId. No matter there is one item or
+        //more than that.
+        EventHandler.Instance.InvokeSendMenuListToCustomer(order);
+     
     }
 
 

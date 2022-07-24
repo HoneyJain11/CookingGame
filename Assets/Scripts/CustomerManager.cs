@@ -18,6 +18,8 @@ public class CustomerManager : MonoBehaviour
     float step;
     public int customerId;
     int slotID;
+    public int orderID;
+    public Order order;
     private void OnEnable()
     {
         EventHandler.Instance.GiveSlotTransformToCustomer += SetCustomerOnSlot;
@@ -36,22 +38,25 @@ public class CustomerManager : MonoBehaviour
        
     }
 
-    private void SetRecipeOnWishList(List<Recipe> temp , int maxRecipeItem)
+    private void SetRecipeOnWishList(Order order)
     {
         if(this.customerId == slotID)
         {
-            for (int i = 0; i < maxRecipeItem; i++)
+            this.order = order;
+            this.orderID = order.OrderID;
+
+            for (int i = 0; i < order.RecipeList.Count; i++)
             {
                 GameObject newEmptyGameObject = Instantiate(emptyGameObject);
-                newEmptyGameObject.AddComponent<SpriteRenderer>().sprite = temp[i].parentImage;
+                newEmptyGameObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].parentImage;
                 newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
                 newEmptyGameObject.transform.parent = recipeSpwanPoints[i].gameObject.transform;
                 newEmptyGameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
 
-                for (int j = 0; j < temp[i].childImages.Length; j++)
+                for (int j = 0; j < order.RecipeList[i].childImages.Length; j++)
                 {
                     GameObject childObject = Instantiate(emptyGameObject);
-                    childObject.AddComponent<SpriteRenderer>().sprite = temp[i].childImages[j];
+                    childObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].childImages[j];
                     childObject.GetComponent<SpriteRenderer>().sortingOrder = newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder + 1 + j;
                     childObject.transform.parent = newEmptyGameObject.gameObject.transform;
                     childObject.transform.localPosition = new Vector3(0f, 0f, 0f);
@@ -67,18 +72,6 @@ public class CustomerManager : MonoBehaviour
     
     private async void MovePlayer()
     {
-
-        /* this.transform.position = new Vector2((this.transform.position.x + move.x * speed * Time.deltaTime),
-
-                                               this.transform.position.y);
-
-
-         if (this.transform.position.x < 0)
-         {
-             speed = 0;
-             wishList.SetActive(true);
-
-         }*/
  
         step = speed * Time.deltaTime;
         this.transform.position = Vector2.MoveTowards(this.transform.position, this.target, step);

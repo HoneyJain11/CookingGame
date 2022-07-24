@@ -35,7 +35,7 @@ public class PlateElement : MonoBehaviour
         EventHandler.Instance.OnChocolateClick += SpwanChocolateOnBread;
         EventHandler.Instance.OnPenautClick += SpwanPeanutOnBread;
         EventHandler.Instance.OnEggClick += SpwanEggOnBread;
-        EventHandler.Instance.OnReadyBreadClick += CheckReadyBread;
+        //EventHandler.Instance.OnReadyBreadClick += CheckReadyBread;
 
         plateList = new List<GameObject>();
         SetPlates();
@@ -52,6 +52,7 @@ public class PlateElement : MonoBehaviour
             if(itemCheckId == recipe1.recipeId)
             {
                 Debug.Log("clicked on chocolate sandwich");
+                
 
             }
            else if (itemCheckId == recipe2.recipeId)
@@ -260,7 +261,7 @@ public class PlateElement : MonoBehaviour
         EventHandler.Instance.OnChocolateClick -= SpwanChocolateOnBread;
         EventHandler.Instance.OnPenautClick -= SpwanPeanutOnBread;
         EventHandler.Instance.OnEggClick -= SpwanEggOnBread;
-        EventHandler.Instance.OnReadyBreadClick -= CheckReadyBread;
+        //EventHandler.Instance.OnReadyBreadClick -= CheckReadyBread;
 
     }
 }

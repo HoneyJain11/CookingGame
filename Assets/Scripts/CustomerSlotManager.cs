@@ -7,45 +7,89 @@ using System;
 
 public class CustomerSlotManager : MonoBehaviour
 {
-    List<Color> slotColor = new List<Color>();
     [SerializeField]
     List <Transform> slots;
     [SerializeField]
     Transform customerSpwanPoint;
     [SerializeField]
     GameObject customerPrefab;
-
+    List <GameObject> customerList;
     private void Start()
     {
-        
-        slotColor.Clear();
-
-        slotColor.Add(Color.black);
-        slotColor.Add(Color.blue);
-        slotColor.Add(Color.yellow);
-        slotColor.Add(Color.red);
-        slotColor.Add(Color.green);
-        slotColor.Add(Color.grey);
-        slotColor.Add(Color.magenta);
-        slotColor.Add(Color.cyan);
-
-        
-        /*int slotsCout = gameObject.transform.childCount;
-        print("Total Slots : " + slotsCout);
-        if (slotsCout>0)
-        {
-            // slots = AccessSlots(slotsCout, slotColor);
-
-            // slots = GetRandom(slots);
-            slots = GetRandom(slots);
-            //SetCustomerToSlots(slots, customer);
-
-        }*/
+        EventHandler.Instance.OnReadyBreadClick += CheckItem;
         slots = GetRandom(slots);
+        customerList = new List<GameObject>();
         SpwanCustomer();
 
     }
 
+    private void CheckItem(GameObject gameObject)
+    {
+        int itemCheckId;
+        bool isItemDeliver;
+        int recipeId;
+        MachineType machineType = MachineType.None;
+
+        if (gameObject.transform.childCount >= 1)
+        {
+            if(!gameObject.transform.GetChild(0).gameObject.GetComponent<ToastBread>())
+            {
+                itemCheckId = gameObject.transform.GetChild(1).gameObject.GetComponent<CoffeeGlass>().itemId;
+                machineType = MachineType.CoffeeMachine;
+            }
+            else
+            {
+                itemCheckId = gameObject.transform.GetChild(0).gameObject.GetComponent<ToastBread>().itemId;
+
+            }
+             
+              
+            Debug.Log(" clicked item id = " + itemCheckId);
+            for (int i = 0; i < customerList.Count; i++)
+            {
+                for(int j = 0; j < customerList[i].GetComponent<CustomerManager>().order.RecipeList.Count; j++)
+                {
+
+                    isItemDeliver = customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered[j];
+                    recipeId = customerList[i].GetComponent<CustomerManager>().order.RecipeList[j].recipeId;
+                    if (recipeId == itemCheckId && isItemDeliver == false)
+                    {
+                        Debug.Log("i =  " + i + " j = " + j);
+                        var wishList=customerList[i].transform.GetChild(0);
+                        var recipieList = wishList.gameObject.transform.GetChild(j);
+                        Debug.Log("recipe item id = " + customerList[i].GetComponent<CustomerManager>().order.RecipeList[j].recipeId);
+                        recipieList.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                        //customerList[i].GetComponent<CustomerManager>().order.RecipeList.Remove(customerList[i].GetComponent<CustomerManager>().order.RecipeList[j]);
+                        customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered[j] = true;
+                        // Add deliver right sigbn here
+                        Debug.Log("item name  " + customerList[i].transform.GetChild(0).gameObject.transform.GetChild(j).gameObject.transform.GetChild(0).gameObject.name);
+                        Debug.Log("i =  " + i + " j = " + j);
+
+                        i = customerList.Count;
+                        if(machineType == MachineType.CoffeeMachine)
+                        {
+                            gameObject.GetComponent<Machine>().MachineMode = MachineMode.Idle;
+                            Destroy(gameObject.transform.GetChild(1).gameObject);
+                            EventHandler.Instance.InvokeOnAgainStartCoffeeMachine();
+                            break;
+                        }
+                        else
+                        {
+                            gameObject.GetComponent<Plates>().plateStateBread = PlateStateBread.Free;
+                            Debug.Log(" plate state bread- " + gameObject.GetComponent<Plates>().plateStateBread);
+                            Destroy(gameObject.transform.GetChild(0).gameObject);
+                            break;
+                        }
+
+                        
+                    }
+                }
+                
+            }
+            //Destroy()
+        }
+
+    }
     private async void SpwanCustomer()
     {
         for (int i = 0; i < slots.Count; i++)
@@ -56,35 +100,10 @@ public class CustomerSlotManager : MonoBehaviour
             customer.transform.parent = customerSpwanPoint;
             customer.transform.localPosition = temp;
             EventHandler.Instance.InvokeGiveSlotTransformToCustomer(slots[i].position,i);
+            customerList.Add(customer);
             await new WaitForSeconds(5);
         }
        
-
-
-    }
-
-    private async void SetCustomerToSlots(List<GameObject> slots, List<GameObject> customer)
-    {
-
-        if(slotColor.Count % slots.Count == 0)
-        {
-
-            for (int i =0;i<slotColor.Count; i++)
-            {
-                if(i<slots.Count)
-                {
-                    slots[i].GetComponent<SpriteRenderer>().color = slotColor[i];
-                }
-                else
-                {
-                    await new WaitForSeconds(2f);
-                    slots[i - slots.Count].GetComponent<SpriteRenderer>().color = slotColor[i];
-                }
-                
-            }
-            
-        }
-
     }
 
     private List<T> GetRandom <T> (List<T> temp)
@@ -118,5 +137,10 @@ public class CustomerSlotManager : MonoBehaviour
         return slotsList;
     }
 
+    private void OnDisable()
+    {
+        EventHandler.Instance.OnReadyBreadClick -= CheckItem;
+        
+    }
 
 }

@@ -24,7 +24,9 @@ public class CoffeeMachineElement : MonoBehaviour
     [SerializeField]
     int coffeeAnimationDuration;
     int remaingcoffeeAnimationDuration = 0;
-
+    GameObject coffeeAnimation = null;
+    int count = 0;
+  
 
     private void Start()
     {
@@ -32,6 +34,7 @@ public class CoffeeMachineElement : MonoBehaviour
         EventHandler.Instance.OnFindFreeCoffeeMachine += CoffeeMachineAnimation;
         EventHandler.Instance.OnStartCoffeeMachineAnimation += StartCoffeeAnimation;
         EventHandler.Instance.OnCoffeeMachineClick += CoffeeMachineClick;
+        EventHandler.Instance.OnAgainStartCoffeeMachine += SetCoffeeGlassOnMachine;
         remaingcoffeeAnimationDuration = coffeeAnimationDuration;
         coffeeMachineList = new List<GameObject>();
         SetCoffeeMachine(rightMachineSlots , coffeeMachinePrefab);
@@ -59,20 +62,44 @@ public class CoffeeMachineElement : MonoBehaviour
 
     private void CoffeeMachineAnimation()
     {
-        
-        for (int i = 0; i < coffeeMachineList.Count; i++)
+       if(count == 2)
         {
-            if (coffeeMachineList[i].gameObject.GetComponent<Machine>().MachineMode == MachineMode.Working)
+            count = 0;
+
+        }
+        if (coffeeMachineList[count].gameObject.transform.childCount == 2)
+        {
+            coffeeAnimation = Instantiate(coffeeAnimatioPrefab);
+            coffeeAnimation.transform.parent = coffeeMachineList[count].gameObject.transform;
+            coffeeAnimation.transform.localPosition = new Vector3(-0.2f, -0.2f, 0f);
+            Debug.Log(" " + coffeeMachineList[count].gameObject.GetComponent<Machine>().MachineMode);
+            EventHandler.Instance.InvokeCoffeeMachineAnimation(coffeeAnimation);
+            count++;
+        }
+
+        else
+        {
+            for (int i = 0; i < coffeeMachineList.Count; i++)
             {
-       
-                GameObject coffeeAnimation = Instantiate(coffeeAnimatioPrefab);
-                coffeeAnimation.transform.parent = coffeeMachineList[i].gameObject.transform;
-                coffeeAnimation.transform.localPosition = new Vector3(-0.2f, -0.2f, 0f);
-                Debug.Log(" " + coffeeMachineList[i].gameObject.GetComponent<Machine>().MachineMode);
-                EventHandler.Instance.InvokeCoffeeMachineAnimation(coffeeAnimation);
+                if (coffeeMachineList[i].GetComponent<Machine>().MachineMode == MachineMode.Working)
+                 {
+                    coffeeMachineList[i].transform.GetChild(2).gameObject.SetActive(true);
+                    GameObject gameObject = coffeeMachineList[i].transform.GetChild(2).gameObject;
+                    SceondaryStartCoffeeAnimation(gameObject);
+
+
+
+                }
             }
         }
-        
+            
+    }
+    private async void SceondaryStartCoffeeAnimation(GameObject gameObject)
+    {
+        await new WaitForSeconds(5f);
+        gameObject.SetActive(false);
+
+
     }
 
     private async void StartCoffeeAnimation(GameObject gameObject)
@@ -85,7 +112,7 @@ public class CoffeeMachineElement : MonoBehaviour
             {
                 Debug.Log("In startCoffeeAnimation condition loop ");
                 gameObject.GetComponent<SpriteRenderer>().sprite = coffeeAnimationSprite[i];
-                await new WaitForSeconds(0.8f);
+                await new WaitForSeconds(0.7f);
             }
             
             remaingcoffeeAnimationDuration--;
@@ -94,6 +121,7 @@ public class CoffeeMachineElement : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
+          
         }
         
     }
@@ -107,7 +135,7 @@ public class CoffeeMachineElement : MonoBehaviour
             {
                 print("Into ChangeGlass Loop");
                 coffeeMachineList[i].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().sprite = fullCoffeeGlass;
-                coffeeMachineList[i].transform.GetChild(1).gameObject.GetComponent<CoffeeGlass>().itemId = 3;
+                //coffeeMachineList[i].transform.GetChild(1).gameObject.GetComponent<CoffeeGlass>().itemId = 3;
                 coffeeMachineList[i].gameObject.GetComponent<Machine>().greenTimer.SetActive(false);
                 Debug.Log(" " + coffeeMachineList[i].gameObject.GetComponent<Machine>().MachineMode);
                 break;
@@ -151,6 +179,7 @@ public class CoffeeMachineElement : MonoBehaviour
         EventHandler.Instance.OnFindFreeCoffeeMachine -= CoffeeMachineAnimation;
         EventHandler.Instance.OnStartCoffeeMachineAnimation -= StartCoffeeAnimation;
         EventHandler.Instance.OnCoffeeMachineClick -= CoffeeMachineClick;
+        EventHandler.Instance.OnAgainStartCoffeeMachine -= SetCoffeeGlassOnMachine;
     }
 
 

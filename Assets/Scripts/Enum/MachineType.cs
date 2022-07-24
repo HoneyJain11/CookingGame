@@ -5,5 +5,6 @@ using UnityEngine;
 public enum MachineType 
 {
     Toaster,
-    CoffeeMachine
+    CoffeeMachine,
+    None
 }

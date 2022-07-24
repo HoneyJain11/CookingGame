@@ -7,9 +7,10 @@ using System;
 public class Recipe : ScriptableObject
 {
     
-   public  Sprite parentImage;
+    public  Sprite parentImage;
    
-   public Sprite [] childImages;
+    public Sprite [] childImages;
     public int recipeId;
+    
 
 }

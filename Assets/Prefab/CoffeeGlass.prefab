@@ -127,4 +127,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectSprite: {fileID: 21300000, guid: 505ce660f2f014f49b92f1a67e52328c, type: 3}
   orderInLayer: 4
-  itemId: 4
+  itemId: 3

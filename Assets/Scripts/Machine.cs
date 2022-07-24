@@ -53,6 +53,7 @@ public class Machine : Element<Machine>
     // when click detect on maching this FN will call.changes machine state to working mode and starts green timer
     public async void OnWorkingMode()
     {
+   
         remainigDuration = duration;
         MachineMode = MachineMode.Working;
         greenTimer.SetActive(true);
