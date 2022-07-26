@@ -1,29 +1,29 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Recipe.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CustomerSlotManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/CustomerSlotManager.cs" Line="22" Column="25" IsPinned="True" />
-      <File FileName="Assets/Scripts/CoffeeMachineElement.cs" Line="107" Column="47" />
-      <File FileName="Assets/Scripts/Enum/PlayerState.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="15" Column="21" />
-      <File FileName="Assets/GameManager.cs" Line="10" Column="17" />
-      <File FileName="Assets/Scripts/PlateElement.cs" Line="197" Column="22" />
-      <File FileName="Assets/Scripts/CustomerManager.cs" Line="65" Column="1" />
-      <File FileName="Assets/MenuListManager.cs" Line="14" Column="1" />
-      <File FileName="Assets/Scripts/EventHandler.cs" Line="111" Column="6" />
-      <File FileName="Assets/Scripts/Singleton/GenericSingleton.cs" Line="19" Column="10" />
-      <File FileName="Assets/Scripts/BreadElement.cs" Line="29" Column="58" />
-      <File FileName="Assets/Scripts/Machine.cs" Line="57" Column="37" />
-      <File FileName="Assets/Scripts/Element.cs" Line="20" Column="1" />
-      <File FileName="Assets/Scripts/Plates.cs" Line="26" Column="1" />
-      <File FileName="Assets/Scripts/ToasterElement.cs" Line="93" Column="2" />
-      <File FileName="Assets/Scripts/ObjectPooling/CustomerPooler.cs" Line="36" Column="61" />
-      <File FileName="Assets/Scripts/CoffeeGlass.cs" Line="15" Column="1" />
-      <File FileName="Assets/Scripts/Order.cs" Line="35" Column="1" />
-      <File FileName="Assets/Plugins/AsyncAwaitUtil/Source/IEnumeratorAwaitExtensions.cs" Line="376" Column="10" />
-      <File FileName="Assets/Scripts/ToastBread.cs" Line="16" Column="1" />
-      <File FileName="Assets/Scripts/Enum/PlateState.cs" Line="15" Column="1" />
-      <File FileName="Assets/Scripts/Enum/MachineType.cs" Line="11" Column="1" />
-      <File FileName="Assets/Scripts/Recipe.cs" Line="17" Column="1" />
+      <File FileName="Assets/Scripts/CustomerSlotManager.cs" Line="45" Column="14" IsPinned="True" />
+      <File FileName="Assets/Scripts/CoffeeMachineElement.cs" Line="43" Column="6" />
+      <File FileName="Assets/Scripts/Enum/PlayerState.cs" />
+      <File FileName="Assets/Scripts/LevelManager.cs" />
+      <File FileName="Assets/GameManager.cs" />
+      <File FileName="Assets/Scripts/PlateElement.cs" />
+      <File FileName="Assets/Scripts/CustomerManager.cs" />
+      <File FileName="Assets/MenuListManager.cs" />
+      <File FileName="Assets/Scripts/EventHandler.cs" Line="78" Column="68" />
+      <File FileName="Assets/Scripts/Singleton/GenericSingleton.cs" />
+      <File FileName="Assets/Scripts/BreadElement.cs" />
+      <File FileName="Assets/Scripts/Machine.cs" Line="80" Column="43" />
+      <File FileName="Assets/Scripts/Element.cs" />
+      <File FileName="Assets/Scripts/Plates.cs" />
+      <File FileName="Assets/Scripts/ToasterElement.cs" Line="12" Column="21" />
+      <File FileName="Assets/Scripts/ObjectPooling/CustomerPooler.cs" />
+      <File FileName="Assets/Scripts/CoffeeGlass.cs" />
+      <File FileName="Assets/Scripts/Order.cs" />
+      <File FileName="Assets/Plugins/AsyncAwaitUtil/Source/IEnumeratorAwaitExtensions.cs" />
+      <File FileName="Assets/Scripts/ToastBread.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Enum/PlateState.cs" />
+      <File FileName="Assets/Scripts/Enum/MachineType.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Recipe.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -35,7 +35,7 @@
                   <Node name="Enum" expanded="True" />
                   <Node name="ObjectPooling" expanded="True" />
                   <Node name="Singleton" expanded="True" />
-                  <Node name="Recipe.cs" selected="True" />
+                  <Node name="CustomerSlotManager.cs" selected="True" />
                 </Node>
               </Node>
             </Node>
@@ -49,18 +49,6 @@
               </Node>
             </Node>
           </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>recipieList.gameObject.transform.GetChild(0).gameObject.name</Value>
-          <Value>coffeeAnimation.name</Value>
-          <Value>coffeeAnimation</Value>
-          <Value>coffeeAnimation.transform.localPosition</Value>
-          <Value>coffeeMachineList0i].gameObject.GetComponent&lt;Machine&gt;().MachineMode</Value>
-          <Value>coffeeMachineList[0].gameObject.GetComponent&lt;Machine&gt;().MachineMode</Value>
-          <Value>coffeeMachineList[1].gameObject.GetComponent&lt;Machine&gt;().MachineMode</Value>
-          <Value>i</Value>
         </State>
       </Pad>
     </Pads>

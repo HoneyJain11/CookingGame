@@ -46,6 +46,7 @@ public class ToasterElement : MonoBehaviour
             {
                 print("Into Stop Toaster Loop");
                 toasterList[i].gameObject.GetComponent<Machine>().OnMachineTap();
+                Destroy(toasterList[i].gameObject.transform.GetChild(2).gameObject);
                 Debug.Log(" " + toasterList[i].gameObject.GetComponent<Machine>().MachineMode);
                 break;
 

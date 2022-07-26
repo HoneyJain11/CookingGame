@@ -34,7 +34,7 @@ public class CustomerSlotManager : MonoBehaviour
         {
             if(!gameObject.transform.GetChild(0).gameObject.GetComponent<ToastBread>())
             {
-                itemCheckId = gameObject.transform.GetChild(1).gameObject.GetComponent<CoffeeGlass>().itemId;
+                itemCheckId = gameObject.transform.GetChild(2).gameObject.GetComponent<CoffeeGlass>().itemId;
                 machineType = MachineType.CoffeeMachine;
             }
             else
@@ -59,7 +59,6 @@ public class CustomerSlotManager : MonoBehaviour
                         var recipieList = wishList.gameObject.transform.GetChild(j);
                         Debug.Log("recipe item id = " + customerList[i].GetComponent<CustomerManager>().order.RecipeList[j].recipeId);
                         recipieList.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-                        //customerList[i].GetComponent<CustomerManager>().order.RecipeList.Remove(customerList[i].GetComponent<CustomerManager>().order.RecipeList[j]);
                         customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered[j] = true;
                         // Add deliver right sigbn here
                         Debug.Log("item name  " + customerList[i].transform.GetChild(0).gameObject.transform.GetChild(j).gameObject.transform.GetChild(0).gameObject.name);
@@ -69,7 +68,7 @@ public class CustomerSlotManager : MonoBehaviour
                         if(machineType == MachineType.CoffeeMachine)
                         {
                             gameObject.GetComponent<Machine>().MachineMode = MachineMode.Idle;
-                            Destroy(gameObject.transform.GetChild(1).gameObject);
+                            Destroy(gameObject.transform.GetChild(2).gameObject);
                             EventHandler.Instance.InvokeOnAgainStartCoffeeMachine();
                             break;
                         }
