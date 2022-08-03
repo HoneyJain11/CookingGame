@@ -24,6 +24,7 @@ public class EventHandler : GenericSingleton<EventHandler>
     public event Action <Order> SendMenuListToCustomer;
     public event Action<Vector3 , int> GiveSlotTransformToCustomer;
     public event Action OnAgainStartCoffeeMachine;
+    public event Action<int> OrderDelivered;
 
     public void InvokeOnBreadClickEvent()
     {
@@ -118,6 +119,11 @@ public class EventHandler : GenericSingleton<EventHandler>
     public void InvokeOnAgainStartCoffeeMachine()
     {
         OnAgainStartCoffeeMachine?.Invoke();
+    }
+
+    public void InvokeOrderDelivered(int customerId)
+    {
+        OrderDelivered?.Invoke(customerId);
     }
 }
 

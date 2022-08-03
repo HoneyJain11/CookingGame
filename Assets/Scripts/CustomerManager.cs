@@ -20,10 +20,13 @@ public class CustomerManager : MonoBehaviour
     int slotID;
     public int orderID;
     public Order order;
+    public Vector3 gatePosition;
+
     private void OnEnable()
     {
         EventHandler.Instance.GiveSlotTransformToCustomer += SetCustomerOnSlot;
         EventHandler.Instance.SendMenuListToCustomer += SetRecipeOnWishList;
+        EventHandler.Instance.OrderDelivered += MovePlayerToGate;
     }
 
 
@@ -87,10 +90,29 @@ public class CustomerManager : MonoBehaviour
         }
 
     }
+    private void MovePlayerToGate(int id)
+    {
+        if (this.customerId == id)
+        {
+            MovePlayerOut();
+            this.wishList.SetActive(false);
+        }
 
+    }
+   private void MovePlayerOut()
+    {
+        step = speed * Time.deltaTime;
+        this.transform.position = Vector2.MoveTowards(this.transform.position, this.gatePosition, step);
+        if (this.transform.position != this.gatePosition)
+        {
+
+            MovePlayerOut();
+        }
+    }
     private void OnDisable()
     {
         EventHandler.Instance.SendMenuListToCustomer -= SetRecipeOnWishList;
         EventHandler.Instance.GiveSlotTransformToCustomer -= SetCustomerOnSlot;
+        EventHandler.Instance.OrderDelivered -= MovePlayerToGate;
     }
 }

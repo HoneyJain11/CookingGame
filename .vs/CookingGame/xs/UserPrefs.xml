@@ -1,28 +1,28 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CustomerSlotManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/CustomerSlotManager.cs" Line="45" Column="14" IsPinned="True" />
-      <File FileName="Assets/Scripts/CoffeeMachineElement.cs" Line="43" Column="6" />
+      <File FileName="Assets/Scripts/CustomerSlotManager.cs" Line="164" Column="29" IsPinned="True" />
+      <File FileName="Assets/Scripts/CoffeeMachineElement.cs" />
       <File FileName="Assets/Scripts/Enum/PlayerState.cs" />
       <File FileName="Assets/Scripts/LevelManager.cs" />
       <File FileName="Assets/GameManager.cs" />
       <File FileName="Assets/Scripts/PlateElement.cs" />
-      <File FileName="Assets/Scripts/CustomerManager.cs" />
+      <File FileName="Assets/Scripts/CustomerManager.cs" Line="95" Column="35" />
       <File FileName="Assets/MenuListManager.cs" />
-      <File FileName="Assets/Scripts/EventHandler.cs" Line="78" Column="68" />
+      <File FileName="Assets/Scripts/EventHandler.cs" />
       <File FileName="Assets/Scripts/Singleton/GenericSingleton.cs" />
       <File FileName="Assets/Scripts/BreadElement.cs" />
-      <File FileName="Assets/Scripts/Machine.cs" Line="80" Column="43" />
+      <File FileName="Assets/Scripts/Machine.cs" />
       <File FileName="Assets/Scripts/Element.cs" />
       <File FileName="Assets/Scripts/Plates.cs" />
-      <File FileName="Assets/Scripts/ToasterElement.cs" Line="12" Column="21" />
+      <File FileName="Assets/Scripts/ToasterElement.cs" />
       <File FileName="Assets/Scripts/ObjectPooling/CustomerPooler.cs" />
       <File FileName="Assets/Scripts/CoffeeGlass.cs" />
-      <File FileName="Assets/Scripts/Order.cs" />
+      <File FileName="Assets/Scripts/Order.cs" Line="21" Column="1" />
       <File FileName="Assets/Plugins/AsyncAwaitUtil/Source/IEnumeratorAwaitExtensions.cs" />
-      <File FileName="Assets/Scripts/ToastBread.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ToastBread.cs" />
       <File FileName="Assets/Scripts/Enum/PlateState.cs" />
-      <File FileName="Assets/Scripts/Enum/MachineType.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Enum/MachineType.cs" />
       <File FileName="Assets/Scripts/Recipe.cs" />
     </Files>
     <Pads>
@@ -50,6 +50,9 @@
             </Node>
           </Node>
         </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

@@ -84,6 +84,8 @@ MonoBehaviour:
   emptyGameObject: {fileID: 6058984782333666410, guid: c4e5fcf2ed3c748559f3f6ce65ed2a45,
     type: 3}
   customerId: 0
+  orderID: 0
+  gatePosition: {x: -14, y: 0.8, z: 0}
 --- !u!212 &1123425239642622212
 SpriteRenderer:
   m_ObjectHideFlags: 0

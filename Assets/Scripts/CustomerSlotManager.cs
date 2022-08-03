@@ -63,9 +63,9 @@ public class CustomerSlotManager : MonoBehaviour
                         // Add deliver right sigbn here
                         Debug.Log("item name  " + customerList[i].transform.GetChild(0).gameObject.transform.GetChild(j).gameObject.transform.GetChild(0).gameObject.name);
                         Debug.Log("i =  " + i + " j = " + j);
-
+                        CheckCustomerAllItemDelivered(customerList[i]);
                         i = customerList.Count;
-                        if(machineType == MachineType.CoffeeMachine)
+                        if (machineType == MachineType.CoffeeMachine)
                         {
                             gameObject.GetComponent<Machine>().MachineMode = MachineMode.Idle;
                             Destroy(gameObject.transform.GetChild(2).gameObject);
@@ -77,18 +77,64 @@ public class CustomerSlotManager : MonoBehaviour
                             gameObject.GetComponent<Plates>().plateStateBread = PlateStateBread.Free;
                             Debug.Log(" plate state bread- " + gameObject.GetComponent<Plates>().plateStateBread);
                             Destroy(gameObject.transform.GetChild(0).gameObject);
+                          
                             break;
                         }
-
                         
                     }
                 }
                 
             }
-            //Destroy()
+           
         }
 
     }
+
+    private void CheckCustomerAllItemDelivered(GameObject customer)
+    {
+        Debug.Log("In CheckCustomerAllItemDelivered ");
+        /*for (int i = 0; i < customerList.Count; i++)
+        {
+            for (int j = 0; j < customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered.Count; j++)
+            {
+               if(customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered[j] == true)
+                {
+                    if (j == customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered.Count - 1)
+                    {
+                        customerList[i].GetComponent<CustomerManager>().order.IsOrderDelivered = true;
+                        int id = customerList[i].GetComponent<CustomerManager>().customerId;
+                        EventHandler.Instance.InvokeOrderDelivered(id);
+                        break;
+                    }
+                }
+               else if(customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered[j] != true)
+                {
+                    
+                }
+                             
+            }
+
+        }*/
+        int no = customer.GetComponent<CustomerManager>().order.IsItemDelivered.Count;
+        for (int i = 0; i < no; i++)
+        {
+            if(customer.GetComponent<CustomerManager>().order.IsItemDelivered[i] == true)
+            {
+                if(i == customer.GetComponent<CustomerManager>().order.IsItemDelivered.Count -1)
+                {
+                    customer.GetComponent<CustomerManager>().order.IsOrderDelivered = true;
+                    int id = customer.GetComponent<CustomerManager>().customerId;
+                    EventHandler.Instance.InvokeOrderDelivered(id);
+                    break;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
     private async void SpwanCustomer()
     {
         for (int i = 0; i < slots.Count; i++)
