@@ -1,0 +1,120 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CustomerManager : MonoBehaviour
+{
+    [SerializeField]
+    GameObject wishList;
+    Vector2 move = Vector2.left;
+    [SerializeField]
+     float speed;
+    [SerializeField]
+    GameObject[] recipeSpwanPoints;
+    [SerializeField]
+    private GameObject emptyGameObject;
+    private Vector3 target;
+    float step;
+    public int customerId;
+    int slotID;
+    public int orderID;
+    public Order order;
+    public Vector3 gatePosition;
+
+    public Vector3 Target { get => target; set => target = value; }
+
+    private void OnEnable()
+    {
+        EventHandler.Instance.GiveSlotTransformToCustomer += SetCustomerOnSlot;
+        EventHandler.Instance.SendMenuListToCustomer += SetRecipeOnWishList;
+        EventHandler.Instance.OrderDelivered += MovePlayerToGate;
+    }
+
+
+    private void SetCustomerOnSlot(Vector3 position ,int slotID)
+    {
+        this.Target = position;
+        this.slotID = slotID;
+        if(this.customerId == slotID)
+        {
+            MovePlayer();
+        }
+       
+    }
+
+    private void SetRecipeOnWishList(Order order)
+    {
+        if(this.customerId == slotID)
+        {
+            this.order = order;
+            this.orderID = order.OrderID;
+
+            for (int i = 0; i < order.RecipeList.Count; i++)
+            {
+                GameObject newEmptyGameObject = Instantiate(emptyGameObject);
+                newEmptyGameObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].parentImage;
+                newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                newEmptyGameObject.transform.parent = recipeSpwanPoints[i].gameObject.transform;
+                newEmptyGameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
+
+                for (int j = 0; j < order.RecipeList[i].childImages.Length; j++)
+                {
+                    GameObject childObject = Instantiate(emptyGameObject);
+                    childObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].childImages[j];
+                    childObject.GetComponent<SpriteRenderer>().sortingOrder = newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder + 1 + j;
+                    childObject.transform.parent = newEmptyGameObject.gameObject.transform;
+                    childObject.transform.localPosition = new Vector3(0f, 0f, 0f);
+
+                }
+
+            }
+
+        }
+
+    }
+
+    
+    private async void MovePlayer()
+    {
+ 
+        step = speed * Time.deltaTime;
+        this.transform.position = Vector2.MoveTowards(this.transform.position, this.Target, step);
+        if (this.transform.position != this.Target)
+        {
+            await new WaitForSeconds(0.01f);
+            MovePlayer();
+        }
+        else
+        {
+            EventHandler.Instance.InvokeGetMenuItemsFromMenuManger();
+            this.wishList.SetActive(true);
+        }
+
+    }
+    private void MovePlayerToGate(int id)
+    {
+        if (this.customerId == id)
+        {
+            MovePlayerOut();
+            this.wishList.SetActive(false);
+        }
+
+    }
+   private void MovePlayerOut()
+    {
+        step = speed * Time.deltaTime;
+        this.transform.position = Vector2.MoveTowards(this.transform.position, this.gatePosition, step);
+        if (this.transform.position != this.gatePosition)
+        {
+
+            MovePlayerOut();
+        }
+    }
+    private void OnDisable()
+    {
+        EventHandler.Instance.SendMenuListToCustomer -= SetRecipeOnWishList;
+        EventHandler.Instance.GiveSlotTransformToCustomer -= SetCustomerOnSlot;
+        EventHandler.Instance.OrderDelivered -= MovePlayerToGate;
+    }
+}
