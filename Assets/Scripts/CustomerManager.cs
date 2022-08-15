@@ -13,7 +13,7 @@ public class CustomerManager : MonoBehaviour
     [SerializeField]
     GameObject[] recipeSpwanPoints;
     [SerializeField]
-    GameObject emptyGameObject;
+    private GameObject emptyGameObject;
     private Vector3 target;
     float step;
     public int customerId;
@@ -21,6 +21,8 @@ public class CustomerManager : MonoBehaviour
     public int orderID;
     public Order order;
     public Vector3 gatePosition;
+
+    public Vector3 Target { get => target; set => target = value; }
 
     private void OnEnable()
     {
@@ -32,7 +34,7 @@ public class CustomerManager : MonoBehaviour
 
     private void SetCustomerOnSlot(Vector3 position ,int slotID)
     {
-        target = position;
+        this.Target = position;
         this.slotID = slotID;
         if(this.customerId == slotID)
         {
@@ -77,8 +79,8 @@ public class CustomerManager : MonoBehaviour
     {
  
         step = speed * Time.deltaTime;
-        this.transform.position = Vector2.MoveTowards(this.transform.position, this.target, step);
-        if (this.transform.position != this.target)
+        this.transform.position = Vector2.MoveTowards(this.transform.position, this.Target, step);
+        if (this.transform.position != this.Target)
         {
             await new WaitForSeconds(0.01f);
             MovePlayer();

@@ -7,6 +7,7 @@ using System;
 
 public class CustomerSlotManager : MonoBehaviour
 {
+    int k = 4;
     [SerializeField]
     List <Transform> slots;
     [SerializeField]
@@ -93,28 +94,7 @@ public class CustomerSlotManager : MonoBehaviour
     private void CheckCustomerAllItemDelivered(GameObject customer)
     {
         Debug.Log("In CheckCustomerAllItemDelivered ");
-        /*for (int i = 0; i < customerList.Count; i++)
-        {
-            for (int j = 0; j < customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered.Count; j++)
-            {
-               if(customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered[j] == true)
-                {
-                    if (j == customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered.Count - 1)
-                    {
-                        customerList[i].GetComponent<CustomerManager>().order.IsOrderDelivered = true;
-                        int id = customerList[i].GetComponent<CustomerManager>().customerId;
-                        EventHandler.Instance.InvokeOrderDelivered(id);
-                        break;
-                    }
-                }
-               else if(customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered[j] != true)
-                {
-                    
-                }
-                             
-            }
-
-        }*/
+        
         int no = customer.GetComponent<CustomerManager>().order.IsItemDelivered.Count;
         for (int i = 0; i < no; i++)
         {
@@ -124,7 +104,9 @@ public class CustomerSlotManager : MonoBehaviour
                 {
                     customer.GetComponent<CustomerManager>().order.IsOrderDelivered = true;
                     int id = customer.GetComponent<CustomerManager>().customerId;
+                    Vector3 pos = customer.transform.position;
                     EventHandler.Instance.InvokeOrderDelivered(id);
+                    CallNextCustomer(pos);
                     break;
                 }
             }
@@ -132,6 +114,24 @@ public class CustomerSlotManager : MonoBehaviour
             {
                 break;
             }
+        }
+    }
+
+    private void CallNextCustomer(Vector3 pos)
+    { // have to change this k 's hardcore value;
+        Debug.Log("In Callnextcustomer method");
+       if(k <8)
+        {
+            
+            Debug.Log("In Callnextcustomer method if condition");
+            GameObject customer = CustomerPooler.Instance.GetPooledObject();
+            customer.SetActive(true);
+            Vector3 temp = new Vector3(0f, 0f, 0f);
+            customer.transform.parent = customerSpwanPoint;
+            customer.transform.localPosition = temp;
+            EventHandler.Instance.InvokeGiveSlotTransformToCustomer(pos, k);
+            customerList.Add(customer);
+            k++;
         }
     }
 

@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPoolItems:
-  - itemRequire: 4
+  - itemRequire: 8
     objectPrefab: {fileID: 1123425239642622219, guid: eb182fbc7385e4ab4b86940d552deb6c,
       type: 3}
 --- !u!4 &13928284
@@ -3246,9 +3246,10 @@ MonoBehaviour:
   speed: 5
   recipeSpwanPoints: []
   emptyGameObject: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
   customerId: 0
   orderID: 0
-  gatePosition: {fileID: 0}
+  gatePosition: {x: 0, y: 0, z: 0}
 --- !u!61 &1421580743
 BoxCollider2D:
   m_ObjectHideFlags: 0
