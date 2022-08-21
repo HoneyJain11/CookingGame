@@ -7,20 +7,21 @@ public class CustomerPooler : GenericSingleton<CustomerPooler>
     [System.Serializable]
     public class ObjectPoolItem
     {
-        public int itemRequire;
+        //public int itemRequire;
         public GameObject objectPrefab;
-
+        
     }
 
     public List<ObjectPoolItem> objectPoolItems;
     List<GameObject> pooledRequireObjects;
+    [SerializeField] LevelData levelDataSO;
 
     private void OnEnable ()
     {
         pooledRequireObjects = new List<GameObject>();
         foreach (ObjectPoolItem poolItem in objectPoolItems)
         {
-            for (int i = 0; i < poolItem.itemRequire; i++)
+            for (int i = 0; i < levelDataSO.MaxCustomers; i++)
             {
                 GameObject gameObject = (GameObject)Instantiate(poolItem.objectPrefab);
                 gameObject.SetActive(false);

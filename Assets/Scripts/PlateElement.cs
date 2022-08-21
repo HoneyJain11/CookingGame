@@ -26,7 +26,7 @@ public class PlateElement : MonoBehaviour
     GameObject readyPeanutPrefab;
     [SerializeField]
     GameObject readyEggPrefab;
-
+    [SerializeField] LevelData levelDataSO;
 
     private void Start()
     {
@@ -218,7 +218,7 @@ public class PlateElement : MonoBehaviour
 
     private void SetPlates()
     {
-        for (int i = 0; i < platesSlots.Count; i++)
+        for (int i = 0; i < levelDataSO.MaxPlates; i++)
         {
             GameObject plates = Instantiate(platePrefab);
             Vector3 temp = new Vector3(0f, 0f, 0f);

@@ -29,9 +29,7 @@ public class Machine : Element<Machine>
     int remainigDuration;
    // int spriteSortingOrder = 3;
     Timer timer;
-    [SerializeField]
-    BreadSO breadSO;
-
+    
     // Getter Setter
     #region
 

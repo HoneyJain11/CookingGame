@@ -24,9 +24,7 @@ public class LevelManager : GenericSingleton<LevelManager>
     int platesUnlocked;
     [SerializeField]
     ToastBread toastBread;
-    [SerializeField]
-    BreadSO breadSO;
-
+   
     [SerializeField]
     List<ToasterSO> toasterSO;
     [SerializeField]
@@ -35,6 +33,7 @@ public class LevelManager : GenericSingleton<LevelManager>
     List<Recipe> recipesSO;
     //[SerializeField]
     //LeftSideMachineSO toasterSO;
+    [SerializeField] LevelData levelDataSO;
 
 
     private void Start()
@@ -42,7 +41,7 @@ public class LevelManager : GenericSingleton<LevelManager>
       //Set LeftTable Objects here eg. Toaster
       //placing leftside machine on proper leftsideslot.
       //  SetTableTopObjects(leftMachineSlots, breadSO.toastMachinePrefab);
-        EventHandler.Instance.InvokeGiveRecipeSOToMenuManager(recipesSO , maxRecipeItem);
+        EventHandler.Instance.InvokeGiveRecipeSOToMenuManager(levelDataSO.LevelRecipes, levelDataSO.LevelRecipes.Count);
         //Set RightTable Objects here eg.Coffee Machine
         //placing rightside machine on proper rightsideslot.
         //SetTableTopObjects(rightMachineSlots, rightMachinePrefab);
@@ -144,7 +143,7 @@ public class LevelManager : GenericSingleton<LevelManager>
     
     private void SetTableTopObjects(List<GameObject> SpawnSlots, GameObject initiatePrefab )
     {
-        for (int i = 0; i < SpawnSlots.Count; i++)
+        for (int i = 0; i < levelDataSO.MaxTrays; i++)
         {
             GameObject childGameObject = Instantiate(initiatePrefab);
             Vector3 temp = new Vector3(0f, 0f, 0f);
@@ -156,7 +155,7 @@ public class LevelManager : GenericSingleton<LevelManager>
 
     private void SetTableTopObjects(List<GameObject> SpawnSlots, List<GameObject> initiatePrefab)
     {
-        for (int i = 0; i < SpawnSlots.Count; i++)
+        for (int i = 0; i < levelDataSO.MaxTrays; i++)
         {
             GameObject childGameObject = Instantiate(initiatePrefab[i]);
             Vector3 temp = new Vector3(0f, 0f, 0f);

@@ -11,7 +11,7 @@ public class ToasterElement : MonoBehaviour
     List<GameObject> toasterList;
     [SerializeField]
     Sprite toastedBread;
-
+    [SerializeField] LevelData levelDataSO;
 
     private void Start()
     {
@@ -73,7 +73,8 @@ public class ToasterElement : MonoBehaviour
 
     private void SetToasterObjects(List<GameObject> SpawnSlots, GameObject initiatePrefab)
     {
-        for (int i = 0; i < SpawnSlots.Count; i++)
+        
+        for (int i = 0; i < levelDataSO.MaxToasterMachine; i++)
         {
             GameObject childGameObject = Instantiate(initiatePrefab);
             Vector3 temp = new Vector3(0f, 0f, 0f);

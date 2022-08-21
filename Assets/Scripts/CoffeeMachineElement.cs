@@ -26,7 +26,7 @@ public class CoffeeMachineElement : MonoBehaviour
     int remaingcoffeeAnimationDuration = 0;
     GameObject coffeeAnimation = null;
     int count = 0;
-  
+    [SerializeField] LevelData levelDataSO;
 
     private void Start()
     {
@@ -121,7 +121,7 @@ public class CoffeeMachineElement : MonoBehaviour
 
     private void SetCoffeeMachine(List<GameObject> SpawnSlots, GameObject initiatePrefab)
     {
-        for (int i = 0; i < SpawnSlots.Count; i++)
+        for (int i = 0; i < levelDataSO.MaxCoffeeMachine; i++)
         {
             GameObject CoffeeMachine = Instantiate(initiatePrefab);
             Vector3 temp = new Vector3(0f, 0f, 0f);
