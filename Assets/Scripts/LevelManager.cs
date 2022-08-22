@@ -34,14 +34,17 @@ public class LevelManager : GenericSingleton<LevelManager>
     //[SerializeField]
     //LeftSideMachineSO toasterSO;
     [SerializeField] LevelData levelDataSO;
-
+    private void OnEnable()
+    {
+       // EventHandler.Instance.InvokeGiveRecipeSOToMenuManager(levelDataSO.LevelRecipes, levelDataSO.LevelRecipes.Count);
+    }
 
     private void Start()
     { //placing all the object on it's specific slot
       //Set LeftTable Objects here eg. Toaster
       //placing leftside machine on proper leftsideslot.
       //  SetTableTopObjects(leftMachineSlots, breadSO.toastMachinePrefab);
-        EventHandler.Instance.InvokeGiveRecipeSOToMenuManager(levelDataSO.LevelRecipes, levelDataSO.LevelRecipes.Count);
+       EventHandler.Instance.InvokeGiveRecipeSOToMenuManager(levelDataSO.LevelRecipes, levelDataSO.LevelRecipes.Count);
         //Set RightTable Objects here eg.Coffee Machine
         //placing rightside machine on proper rightsideslot.
         //SetTableTopObjects(rightMachineSlots, rightMachinePrefab);

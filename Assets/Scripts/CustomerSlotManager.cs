@@ -120,7 +120,7 @@ public class CustomerSlotManager : MonoBehaviour
     private void CallNextCustomer(Vector3 pos)
     { // have to change this k 's hardcore value;
         Debug.Log("In Callnextcustomer method");
-       if(k <8)
+       if(k < 10)
         {
             
             Debug.Log("In Callnextcustomer method if condition");
@@ -129,8 +129,8 @@ public class CustomerSlotManager : MonoBehaviour
             Vector3 temp = new Vector3(0f, 0f, 0f);
             customer.transform.parent = customerSpwanPoint;
             customer.transform.localPosition = temp;
-            EventHandler.Instance.InvokeGiveSlotTransformToCustomer(pos, k);
             customerList.Add(customer);
+            EventHandler.Instance.InvokeGiveSlotTransformToCustomer(pos, k);
             k++;
         }
     }
@@ -144,8 +144,9 @@ public class CustomerSlotManager : MonoBehaviour
             Vector3 temp = new Vector3(0f, 0f, 0f);
             customer.transform.parent = customerSpwanPoint;
             customer.transform.localPosition = temp;
-            EventHandler.Instance.InvokeGiveSlotTransformToCustomer(slots[i].position,i);
             customerList.Add(customer);
+            EventHandler.Instance.InvokeGiveSlotTransformToCustomer(slots[i].position,i);
+
             await new WaitForSeconds(5);
         }
        

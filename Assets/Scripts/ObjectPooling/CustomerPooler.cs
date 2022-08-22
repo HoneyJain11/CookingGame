@@ -16,7 +16,7 @@ public class CustomerPooler : GenericSingleton<CustomerPooler>
     List<GameObject> pooledRequireObjects;
     [SerializeField] LevelData levelDataSO;
 
-    private void OnEnable ()
+    private void Start ()
     {
         pooledRequireObjects = new List<GameObject>();
         foreach (ObjectPoolItem poolItem in objectPoolItems)
