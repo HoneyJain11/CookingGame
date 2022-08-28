@@ -20,8 +20,8 @@ public class EventHandler : GenericSingleton<EventHandler>
     public event Action OnFindFreeCoffeeMachine;
     public event Action <int> OnCoffeeMachineClick;
     public event Action<List<Recipe> , int> GiveRecipeSOToMenuManager;
-    public event Action GetMenuItemsFromMenuManger;
-    public event Action <Order> SendMenuListToCustomer;
+    public event Action <int>GetMenuItemsFromMenuManger;
+    public event Action <Order , int> SendMenuListToCustomer;
     public event Action<Vector3 , int> GiveSlotTransformToCustomer;
     public event Action OnAgainStartCoffeeMachine;
     public event Action<int> OrderDelivered;
@@ -106,14 +106,14 @@ public class EventHandler : GenericSingleton<EventHandler>
         GiveRecipeSOToMenuManager?.Invoke(recipe , maxRecipeItem);
     }
 
-    public void InvokeGetMenuItemsFromMenuManger()
+    public void InvokeGetMenuItemsFromMenuManger(int customerId)
     {
-        GetMenuItemsFromMenuManger?.Invoke();
+        GetMenuItemsFromMenuManger?.Invoke(customerId);
     }
 
-    public void InvokeSendMenuListToCustomer(Order order)
+    public void InvokeSendMenuListToCustomer(Order order , int customerId)
     {
-        SendMenuListToCustomer?.Invoke(order);
+        SendMenuListToCustomer?.Invoke(order , customerId);
     }
 
     public void InvokeOnAgainStartCoffeeMachine()

@@ -1,36 +1,43 @@
 ﻿<Properties StartupConfiguration="{FC74B7CA-8782-3C04-1EFD-F30056E41432}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CustomerSlotManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/CustomerManager.cs" Line="44" Column="1" IsPinned="True" />
+      <File FileName="Assets/Scripts/CustomerManager.cs" Line="39" Column="34" IsPinned="True" />
       <File FileName="Assets/Scripts/Recipe.cs" Line="17" Column="1" IsPinned="True" />
-      <File FileName="Assets/MenuListManager.cs" Line="37" Column="41" IsPinned="True" />
-      <File FileName="Assets/Scripts/CustomerSlotManager.cs" Line="131" Column="53" />
-      <File FileName="Assets/Scripts/CoffeeMachineElement.cs" Line="20" Column="21" />
+      <File FileName="Assets/MenuListManager.cs" Line="42" Column="59" IsPinned="True" />
+      <File FileName="Assets/Scripts/CustomerSlotManager.cs" Line="136" Column="18" />
+      <File FileName="Assets/Scripts/CoffeeMachineElement.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Enum/PlayerState.cs" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="59" Column="4" />
-      <File FileName="Assets/GameManager.cs" />
+      <File FileName="Assets/Scripts/LevelManager.cs" />
+      <File FileName="Assets/GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/PlateElement.cs" />
-      <File FileName="Assets/Scripts/EventHandler.cs" Line="57" Column="1" />
-      <File FileName="Assets/Scripts/Singleton/GenericSingleton.cs" Line="8" Column="1" />
+      <File FileName="Assets/Scripts/EventHandler.cs" Line="116" Column="58" />
+      <File FileName="Assets/Scripts/Singleton/GenericSingleton.cs" />
       <File FileName="Assets/Scripts/BreadElement.cs" />
       <File FileName="Assets/Scripts/Machine.cs" />
       <File FileName="Assets/Scripts/Element.cs" />
       <File FileName="Assets/Scripts/Plates.cs" />
       <File FileName="Assets/Scripts/ToasterElement.cs" />
-      <File FileName="Assets/Scripts/ObjectPooling/CustomerPooler.cs" Line="19" Column="26" />
+      <File FileName="Assets/Scripts/ObjectPooling/CustomerPooler.cs" />
       <File FileName="Assets/Scripts/CoffeeGlass.cs" />
-      <File FileName="Assets/Scripts/Order.cs" Line="29" Column="31" />
-      <File FileName="Assets/Plugins/AsyncAwaitUtil/Source/IEnumeratorAwaitExtensions.cs" />
+      <File FileName="Assets/Scripts/Order.cs" />
+      <File FileName="Assets/Plugins/AsyncAwaitUtil/Source/IEnumeratorAwaitExtensions.cs" Line="369" Column="1" />
       <File FileName="Assets/Scripts/ToastBread.cs" />
       <File FileName="Assets/Scripts/Enum/PlateState.cs" />
       <File FileName="Assets/Scripts/Enum/MachineType.cs" />
+      <File FileName="Assets/Scripts/LevelData.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="CookingGame" expanded="True">
             <Node name="Assets" expanded="True">
+              <Node name="Plugins" expanded="True">
+                <Node name="AsyncAwaitUtil" expanded="True">
+                  <Node name="Source" expanded="True" />
+                </Node>
+              </Node>
               <Node name="Scripts" expanded="True">
+                <Node name="Enum" expanded="True" />
                 <Node name="ObjectPooling" expanded="True" />
                 <Node name="Singleton" expanded="True" />
                 <Node name="CustomerSlotManager.cs" selected="True" />
@@ -46,11 +53,9 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="f8f6a093-f48a-4f61-959a-90a637c4388e" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="d6ae07c3-aa5a-4056-a5f7-319bbf59b01a" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Volumes/HDD3/CookingGame/CookingGame/Assets/Scripts/CustomerSlotManager.cs" relfile="Assets/Scripts/CustomerSlotManager.cs" line="133" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

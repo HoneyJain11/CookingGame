@@ -14,15 +14,15 @@ public class CustomerManager : MonoBehaviour
     GameObject[] recipeSpwanPoints;
     [SerializeField]
     private GameObject emptyGameObject;
-    private Vector3 target;
+    public Vector3 target;
     float step;
     public int customerId;
     int slotID;
     public int orderID;
     public Order order;
     public Vector3 gatePosition;
-
-    public Vector3 Target { get => target; set => target = value; }
+    public PlayerState playerState = PlayerState.Idle;
+   
 
     private void OnEnable()
     {
@@ -32,20 +32,22 @@ public class CustomerManager : MonoBehaviour
     }
 
 
-    private void SetCustomerOnSlot(Vector3 position ,int slotID)
+    private void SetCustomerOnSlot(Vector3 target, int slotID)
     {
-        this.Target = position;
+        
         this.slotID = slotID;
-        if(this.customerId == slotID)
+        if (customerId == slotID)
         {
+            this.target = target;
             MovePlayer();
+           
         }
        
     }
 
-    private void SetRecipeOnWishList(Order order)
+    private void SetRecipeOnWishList(Order order , int customerId)
     {
-        if(this.customerId == slotID)
+        if(this.customerId == customerId)
         {
             this.order = order;
             this.orderID = order.OrderID;
@@ -71,24 +73,26 @@ public class CustomerManager : MonoBehaviour
             }
 
         }
-
+       
     }
 
-    
+
     private async void MovePlayer()
     {
  
         step = speed * Time.deltaTime;
-        this.transform.position = Vector2.MoveTowards(this.transform.position, this.Target, step);
-        if (this.transform.position != this.Target)
+        this.transform.position = Vector2.MoveTowards(this.transform.position, this.target, step);
+        this.playerState = PlayerState.Waliking;
+        if (this.transform.position != this.target)
         {
             await new WaitForSeconds(0.01f);
             MovePlayer();
         }
         else
         {
-            EventHandler.Instance.InvokeGetMenuItemsFromMenuManger();
+            EventHandler.Instance.InvokeGetMenuItemsFromMenuManger(this.customerId);
             this.wishList.SetActive(true);
+            this.playerState = PlayerState.Waiting;
         }
 
     }
@@ -98,6 +102,7 @@ public class CustomerManager : MonoBehaviour
         {
             MovePlayerOut();
             this.wishList.SetActive(false);
+            this.playerState = PlayerState.GotOrder;
         }
 
     }
@@ -110,6 +115,7 @@ public class CustomerManager : MonoBehaviour
 
             MovePlayerOut();
         }
+
     }
     private void OnDisable()
     {

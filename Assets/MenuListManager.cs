@@ -23,18 +23,18 @@ public class MenuListManager : MonoBehaviour
         orderMasterList.Clear();
 
     }
-    private void GiveMenuItemsToCustomer()
+    private void GiveMenuItemsToCustomer(int customerId)
     {
         itemList=GetRandom(RecipeSO);
         for (int i =0;i< itemList.Count;i++)
         {
             print("Menu Items To Customer " + itemList[i].recipeId);
         }
-        SendMenuItemsToCustomer();
+        SendMenuItemsToCustomer(customerId);
     }
 
 
-    private void SendMenuItemsToCustomer()
+    private void SendMenuItemsToCustomer(int customerId)
     {
         List<Recipe> orderList = new List<Recipe>();
         List<bool> isItemDelivered = new List<bool>();
@@ -57,7 +57,7 @@ public class MenuListManager : MonoBehaviour
 
         // Order List will be pass here with same orderId. No matter there is one item or
         //more than that.
-        EventHandler.Instance.InvokeSendMenuListToCustomer(order);
+        EventHandler.Instance.InvokeSendMenuListToCustomer(order , customerId);
      
     }
 

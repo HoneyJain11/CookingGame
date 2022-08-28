@@ -13,12 +13,14 @@ public class CustomerPooler : GenericSingleton<CustomerPooler>
     }
 
     public List<ObjectPoolItem> objectPoolItems;
-    List<GameObject> pooledRequireObjects;
+    private List<GameObject> pooledRequireObjects;
     [SerializeField] LevelData levelDataSO;
+
+    public List<GameObject> PooledRequireObjects { get => pooledRequireObjects; set => pooledRequireObjects = value; }
 
     private void Start ()
     {
-        pooledRequireObjects = new List<GameObject>();
+        PooledRequireObjects = new List<GameObject>();
         foreach (ObjectPoolItem poolItem in objectPoolItems)
         {
             for (int i = 0; i < levelDataSO.MaxCustomers; i++)
@@ -26,7 +28,7 @@ public class CustomerPooler : GenericSingleton<CustomerPooler>
                 GameObject gameObject = (GameObject)Instantiate(poolItem.objectPrefab);
                 gameObject.SetActive(false);
                 gameObject.GetComponent<CustomerManager>().customerId = i;
-                pooledRequireObjects.Add(gameObject);
+                PooledRequireObjects.Add(gameObject);
 
             }
         }
@@ -34,11 +36,11 @@ public class CustomerPooler : GenericSingleton<CustomerPooler>
 
     public GameObject GetPooledObject()
     {
-        for (int i = 0; i < pooledRequireObjects.Count; i++)
+        for (int i = 0; i < PooledRequireObjects.Count; i++)
         {
-            if (!pooledRequireObjects[i].activeInHierarchy)
+            if (!PooledRequireObjects[i].activeInHierarchy)
             {
-                return pooledRequireObjects[i];
+                return PooledRequireObjects[i];
             }
 
         }

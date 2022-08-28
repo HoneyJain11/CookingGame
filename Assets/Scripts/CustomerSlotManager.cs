@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
-
+using System.Threading.Tasks;
 
 public class CustomerSlotManager : MonoBehaviour
 {
@@ -15,6 +15,7 @@ public class CustomerSlotManager : MonoBehaviour
     [SerializeField]
     GameObject customerPrefab;
     List <GameObject> customerList;
+    bool spwanedAllFourCustomer = false;
     private void Start()
     {
         EventHandler.Instance.OnReadyBreadClick += CheckItem;
@@ -48,43 +49,45 @@ public class CustomerSlotManager : MonoBehaviour
             Debug.Log(" clicked item id = " + itemCheckId);
             for (int i = 0; i < customerList.Count; i++)
             {
-                for(int j = 0; j < customerList[i].GetComponent<CustomerManager>().order.RecipeList.Count; j++)
+                if(customerList[i].GetComponent<CustomerManager>().order!=null)
                 {
-
-                    isItemDeliver = customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered[j];
-                    recipeId = customerList[i].GetComponent<CustomerManager>().order.RecipeList[j].recipeId;
-                    if (recipeId == itemCheckId && isItemDeliver == false)
+                    for (int j = 0; j < customerList[i].GetComponent<CustomerManager>().order.RecipeList.Count; j++)
                     {
-                        Debug.Log("i =  " + i + " j = " + j);
-                        var wishList=customerList[i].transform.GetChild(0);
-                        var recipieList = wishList.gameObject.transform.GetChild(j);
-                        Debug.Log("recipe item id = " + customerList[i].GetComponent<CustomerManager>().order.RecipeList[j].recipeId);
-                        recipieList.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-                        customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered[j] = true;
-                        // Add deliver right sigbn here
-                        Debug.Log("item name  " + customerList[i].transform.GetChild(0).gameObject.transform.GetChild(j).gameObject.transform.GetChild(0).gameObject.name);
-                        Debug.Log("i =  " + i + " j = " + j);
-                        CheckCustomerAllItemDelivered(customerList[i]);
-                        i = customerList.Count;
-                        if (machineType == MachineType.CoffeeMachine)
+
+                        isItemDeliver = customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered[j];
+                        recipeId = customerList[i].GetComponent<CustomerManager>().order.RecipeList[j].recipeId;
+                        if (recipeId == itemCheckId && isItemDeliver == false)
                         {
-                            gameObject.GetComponent<Machine>().MachineMode = MachineMode.Idle;
-                            Destroy(gameObject.transform.GetChild(2).gameObject);
-                            EventHandler.Instance.InvokeOnAgainStartCoffeeMachine();
-                            break;
+                            Debug.Log("i =  " + i + " j = " + j);
+                            var wishList = customerList[i].transform.GetChild(0);
+                            var recipieList = wishList.gameObject.transform.GetChild(j);
+                            Debug.Log("recipe item id = " + customerList[i].GetComponent<CustomerManager>().order.RecipeList[j].recipeId);
+                            recipieList.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                            customerList[i].GetComponent<CustomerManager>().order.IsItemDelivered[j] = true;
+                            // Add deliver right sigbn here
+                            Debug.Log("item name  " + customerList[i].transform.GetChild(0).gameObject.transform.GetChild(j).gameObject.transform.GetChild(0).gameObject.name);
+                            Debug.Log("i =  " + i + " j = " + j);
+                            CheckCustomerAllItemDelivered(customerList[i]);
+                            i = customerList.Count;
+                            if (machineType == MachineType.CoffeeMachine)
+                            {
+                                gameObject.GetComponent<Machine>().MachineMode = MachineMode.Idle;
+                                Destroy(gameObject.transform.GetChild(2).gameObject);
+                                EventHandler.Instance.InvokeOnAgainStartCoffeeMachine();
+                                break;
+                            }
+                            else
+                            {
+                                gameObject.GetComponent<Plates>().plateStateBread = PlateStateBread.Free;
+                                Debug.Log(" plate state bread- " + gameObject.GetComponent<Plates>().plateStateBread);
+                                Destroy(gameObject.transform.GetChild(0).gameObject);
+
+                                break;
+                            }
+
                         }
-                        else
-                        {
-                            gameObject.GetComponent<Plates>().plateStateBread = PlateStateBread.Free;
-                            Debug.Log(" plate state bread- " + gameObject.GetComponent<Plates>().plateStateBread);
-                            Destroy(gameObject.transform.GetChild(0).gameObject);
-                          
-                            break;
-                        }
-                        
                     }
                 }
-                
             }
            
         }
@@ -117,22 +120,50 @@ public class CustomerSlotManager : MonoBehaviour
         }
     }
 
-    private void CallNextCustomer(Vector3 pos)
-    { // have to change this k 's hardcore value;
+    private async void CallNextCustomer(Vector3 pos)
+    { // have to change this k 's hardcore value.
         Debug.Log("In Callnextcustomer method");
        if(k < 10)
         {
-            
-            Debug.Log("In Callnextcustomer method if condition");
-            GameObject customer = CustomerPooler.Instance.GetPooledObject();
-            customer.SetActive(true);
-            Vector3 temp = new Vector3(0f, 0f, 0f);
-            customer.transform.parent = customerSpwanPoint;
-            customer.transform.localPosition = temp;
-            customerList.Add(customer);
-            EventHandler.Instance.InvokeGiveSlotTransformToCustomer(pos, k);
-            k++;
+            /*for (int i = 0; i < customerList.Count; i++)
+            {
+                if (customerList[i].GetComponent<CustomerManager>().playerState == PlayerState.Waiting || customerList[i].GetComponent<CustomerManager>().playerState == PlayerState.GotOrder)
+                {
+                    spwanedAllFourCustomer = true;
+
+                }
+                else
+                {
+                    spwanedAllFourCustomer = false;
+
+                }
+            }*/
+
+                await new WaitUntil(CheckFirstFourCustomerSpwaned);
+                Debug.Log("In Callnextcustomer method if condition");
+                await new WaitForSeconds(2);
+                GameObject customer = CustomerPooler.Instance.GetPooledObject();
+                customer.SetActive(true);
+                Vector3 temp = new Vector3(0f, 0f, 0f);
+                customer.transform.parent = customerSpwanPoint;
+                customer.transform.localPosition = temp;
+                customerList.Add(customer);
+                EventHandler.Instance.InvokeGiveSlotTransformToCustomer(pos, k);
+                k++;
+           
         }
+    }
+
+   
+
+    private bool CheckFirstFourCustomerSpwaned()
+    {
+       
+        if (spwanedAllFourCustomer == true)
+            return true;
+        else
+            return false;
+
     }
 
     private async void SpwanCustomer()
@@ -145,12 +176,12 @@ public class CustomerSlotManager : MonoBehaviour
             customer.transform.parent = customerSpwanPoint;
             customer.transform.localPosition = temp;
             customerList.Add(customer);
-            EventHandler.Instance.InvokeGiveSlotTransformToCustomer(slots[i].position,i);
-
+            EventHandler.Instance.InvokeGiveSlotTransformToCustomer(slots[i].position, i);
             await new WaitForSeconds(5);
+            
         }
-       
-    }
+        spwanedAllFourCustomer = true;
+     }
 
     private List<T> GetRandom <T> (List<T> temp)
     {
