@@ -5,7 +5,7 @@ public enum PlayerState
     Waliking,
     Waiting,
     GotOrder,
-
+    Ready,
 }
 
 public enum PlayerSlot

@@ -16,7 +16,7 @@ MonoBehaviour:
   MaxCoffeeMachine: 1
   MaxPlates: 2
   MaxTrays: 1
-  MaxCustomers: 10
+  MaxCustomers: 6
   LevelRecipes:
   - {fileID: 11400000, guid: da31124541c4b4aed8f3190fc1275457, type: 2}
   - {fileID: 11400000, guid: 23815467a3f8d44249f10a96c393acee, type: 2}

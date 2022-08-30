@@ -125,23 +125,10 @@ public class CustomerSlotManager : MonoBehaviour
         Debug.Log("In Callnextcustomer method");
        if(k < 10)
         {
-            /*for (int i = 0; i < customerList.Count; i++)
-            {
-                if (customerList[i].GetComponent<CustomerManager>().playerState == PlayerState.Waiting || customerList[i].GetComponent<CustomerManager>().playerState == PlayerState.GotOrder)
-                {
-                    spwanedAllFourCustomer = true;
-
-                }
-                else
-                {
-                    spwanedAllFourCustomer = false;
-
-                }
-            }*/
 
                 await new WaitUntil(CheckFirstFourCustomerSpwaned);
                 Debug.Log("In Callnextcustomer method if condition");
-                await new WaitForSeconds(2);
+                await new WaitForSeconds(5);
                 GameObject customer = CustomerPooler.Instance.GetPooledObject();
                 customer.SetActive(true);
                 Vector3 temp = new Vector3(0f, 0f, 0f);

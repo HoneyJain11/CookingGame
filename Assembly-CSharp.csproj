@@ -64,7 +64,6 @@
     <Compile Include="Assets/Scripts/CustomerManager.cs" />
     <Compile Include="Assets/Scripts/CustomerSlotManager.cs" />
     <Compile Include="Assets/Scripts/Element.cs" />
-    <Compile Include="Assets/Scripts/Enum/CustomerState.cs" />
     <Compile Include="Assets/Scripts/Enum/MachineMode.cs" />
     <Compile Include="Assets/Scripts/Enum/MachineType.cs" />
     <Compile Include="Assets/Scripts/Enum/PlateState.cs" />

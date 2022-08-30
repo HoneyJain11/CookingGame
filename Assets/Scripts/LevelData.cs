@@ -14,7 +14,7 @@ public class LevelData : ScriptableObject
     public int MaxPlates;
     [Range(1, 5)]
     public int MaxTrays;
-    [Range(10, 50)]
+    [Range(1,20)]
     public int MaxCustomers;
     public List<Recipe> LevelRecipes;
     //public List<bool> enableCoffeeMachineList = new List<bool>(coffeeMachineCount);

@@ -29,19 +29,21 @@ public class CustomerManager : MonoBehaviour
         EventHandler.Instance.GiveSlotTransformToCustomer += SetCustomerOnSlot;
         EventHandler.Instance.SendMenuListToCustomer += SetRecipeOnWishList;
         EventHandler.Instance.OrderDelivered += MovePlayerToGate;
+
     }
-
-
+   
     private void SetCustomerOnSlot(Vector3 target, int slotID)
     {
+
+         this.slotID = slotID;
+         if (customerId == slotID)
+         {
+
+             this.target = target;
+             MovePlayer();
+         }
+       
         
-        this.slotID = slotID;
-        if (customerId == slotID)
-        {
-            this.target = target;
-            MovePlayer();
-           
-        }
        
     }
 
@@ -106,16 +108,22 @@ public class CustomerManager : MonoBehaviour
         }
 
     }
-   private void MovePlayerOut()
+   private async void MovePlayerOut()
     {
         step = speed * Time.deltaTime;
         this.transform.position = Vector2.MoveTowards(this.transform.position, this.gatePosition, step);
         if (this.transform.position != this.gatePosition)
         {
-
+            await new WaitForSeconds(0.01f);
             MovePlayerOut();
         }
-
+        else
+        {
+            this.customerId = this.customerId + 6;
+            this.playerState = PlayerState.Idle;
+            CustomerPooler.Instance.SetPooledObjectInPool(this.gameObject);
+            this.gameObject.SetActive(false);
+        }
     }
     private void OnDisable()
     {
