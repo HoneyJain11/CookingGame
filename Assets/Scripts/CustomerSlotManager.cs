@@ -134,6 +134,10 @@ public class CustomerSlotManager : MonoBehaviour
                 Vector3 temp = new Vector3(0f, 0f, 0f);
                 customer.transform.parent = customerSpwanPoint;
                 customer.transform.localPosition = temp;
+                if(k > 5)
+                {
+                 customer.GetComponent<CustomerManager>().customerId = k;
+                }
                 customerList.Add(customer);
                 EventHandler.Instance.InvokeGiveSlotTransformToCustomer(pos, k);
                 k++;

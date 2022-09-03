@@ -73,15 +73,7 @@ public class CustomerPooler : GenericSingleton<CustomerPooler>
 
     public GameObject GetPooledObject()
     {
-        for (int i = 0; i < PooledRequireObjects.Count; i++)
-        {
-            if (!PooledRequireObjects.Peek().activeInHierarchy)
-            {
-                return PooledRequireObjects.Dequeue();
-            }
-
-        }
-        return null;
+        return !PooledRequireObjects.Peek().activeInHierarchy ? PooledRequireObjects.Dequeue() : null;
     }
 
     public void SetPooledObjectInPool(GameObject gameObject)

@@ -22,7 +22,7 @@ public class CustomerManager : MonoBehaviour
     public Order order;
     public Vector3 gatePosition;
     public PlayerState playerState = PlayerState.Idle;
-   
+   public int no = 5;
 
     private void OnEnable()
     {
@@ -42,42 +42,37 @@ public class CustomerManager : MonoBehaviour
              this.target = target;
              MovePlayer();
          }
-       
-        
-       
     }
 
-    private void SetRecipeOnWishList(Order order , int customerId)
+    private void SetRecipeOnWishList(Order order, int customerId)
     {
         if(this.customerId == customerId)
-        {
-            this.order = order;
-            this.orderID = order.OrderID;
+         {
+             this.order = order;
+             this.orderID = order.OrderID;
 
-            for (int i = 0; i < order.RecipeList.Count; i++)
-            {
-                GameObject newEmptyGameObject = Instantiate(emptyGameObject);
-                newEmptyGameObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].parentImage;
-                newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
-                newEmptyGameObject.transform.parent = recipeSpwanPoints[i].gameObject.transform;
-                newEmptyGameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
+             for (int i = 0; i < order.RecipeList.Count; i++)
+             {
+                 GameObject newEmptyGameObject = Instantiate(emptyGameObject);
+                 newEmptyGameObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].parentImage;
+                 newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                 newEmptyGameObject.transform.parent = recipeSpwanPoints[i].gameObject.transform;
+                 newEmptyGameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
 
-                for (int j = 0; j < order.RecipeList[i].childImages.Length; j++)
-                {
-                    GameObject childObject = Instantiate(emptyGameObject);
-                    childObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].childImages[j];
-                    childObject.GetComponent<SpriteRenderer>().sortingOrder = newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder + 1 + j;
-                    childObject.transform.parent = newEmptyGameObject.gameObject.transform;
-                    childObject.transform.localPosition = new Vector3(0f, 0f, 0f);
+                 for (int j = 0; j < order.RecipeList[i].childImages.Length; j++)
+                 {
+                     GameObject childObject = Instantiate(emptyGameObject);
+                     childObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].childImages[j];
+                     childObject.GetComponent<SpriteRenderer>().sortingOrder = newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder + 1 + j;
+                     childObject.transform.parent = newEmptyGameObject.gameObject.transform;
+                     childObject.transform.localPosition = new Vector3(0f, 0f, 0f);
 
-                }
+                 }
 
-            }
+             }
 
-        }
-       
+         }
     }
-
 
     private async void MovePlayer()
     {
@@ -119,10 +114,10 @@ public class CustomerManager : MonoBehaviour
         }
         else
         {
-            this.customerId = this.customerId + 6;
-            this.playerState = PlayerState.Idle;
+            this.playerState = PlayerState.Idle; 
             CustomerPooler.Instance.SetPooledObjectInPool(this.gameObject);
             this.gameObject.SetActive(false);
+           
         }
     }
     private void OnDisable()
