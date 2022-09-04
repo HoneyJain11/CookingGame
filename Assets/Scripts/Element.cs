@@ -13,7 +13,11 @@ public class Element <T>: MonoBehaviour where T: Element<T>
     {
         this.gameObject.AddComponent<SpriteRenderer>().sprite = objectSprite;
         this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = orderInLayer;
-        this.gameObject.AddComponent<BoxCollider2D>();
+        if(!this.gameObject.GetComponent<BoxCollider2D>())
+        {
+            this.gameObject.AddComponent<BoxCollider2D>();
+        }
+       
     }
 }
 

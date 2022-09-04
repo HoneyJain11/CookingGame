@@ -270,7 +270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5433069224735561855
 Transform:
   m_ObjectHideFlags: 0
@@ -564,4 +564,3 @@ MonoBehaviour:
   machineMode: 1
   duration: 5
   burningDuration: 5
-  breadSO: {fileID: 11400000, guid: edb60b75571f243c98be2ae34073f66a, type: 2}

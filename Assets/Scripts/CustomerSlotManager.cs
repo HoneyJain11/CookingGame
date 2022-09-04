@@ -9,13 +9,14 @@ public class CustomerSlotManager : MonoBehaviour
 {
     int k = 4;
     [SerializeField]
-    List <Transform> slots;
+    List<Transform> slots;
     [SerializeField]
-    Transform customerSpwanPoint;
+    public Transform customerSpwanPoint;
     [SerializeField]
     GameObject customerPrefab;
-    List <GameObject> customerList;
+    public List <GameObject> customerList;
     bool spwanedAllFourCustomer = false;
+
     private void Start()
     {
         EventHandler.Instance.OnReadyBreadClick += CheckItem;
@@ -120,34 +121,37 @@ public class CustomerSlotManager : MonoBehaviour
         }
     }
 
-    private async void CallNextCustomer(Vector3 pos)
+    private void CallNextCustomer(Vector3 pos)
     { // have to change this k 's hardcore value.
-        Debug.Log("In Callnextcustomer method");
-       if(k < 10)
-        {
+        /* Debug.Log("In Callnextcustomer method");
+        if(k < 10)
+         {
 
-                await new WaitUntil(CheckFirstFourCustomerSpwaned);
-                Debug.Log("In Callnextcustomer method if condition");
-                await new WaitForSeconds(5);
-                GameObject customer = CustomerPooler.Instance.GetPooledObject();
-                customer.SetActive(true);
-                Vector3 temp = new Vector3(0f, 0f, 0f);
-                customer.transform.parent = customerSpwanPoint;
-                customer.transform.localPosition = temp;
-                if(k > 5)
-                {
-                 customer.GetComponent<CustomerManager>().customerId = k;
-                }
-                customerList.Add(customer);
-                EventHandler.Instance.InvokeGiveSlotTransformToCustomer(pos, k);
-                k++;
-           
-        }
+                 await new WaitUntil(CheckFirstFourCustomerSpwaned);
+                 Debug.Log("In Callnextcustomer method if condition");
+                 await new WaitForSeconds(5);
+                 GameObject customer = CustomerPooler.Instance.GetPooledObject();
+                 customer.SetActive(true);
+                 Vector3 temp = new Vector3(0f, 0f, 0f);
+                 customer.transform.parent = customerSpwanPoint;
+                 customer.transform.localPosition = temp;
+                 if(k > 5)
+                 {
+                  customer.GetComponent<CustomerManager>().customerId = k;
+                 }
+                 customerList.Add(customer);
+                 EventHandler.Instance.InvokeGiveSlotTransformToCustomer(pos, k);
+                 k++;
+
+         }*/
+        
+        EventHandler.Instance.InvokeOnCallNextCustomer(pos);
+
     }
 
    
 
-    private bool CheckFirstFourCustomerSpwaned()
+    public bool CheckFirstFourCustomerSpwaned()
     {
        
         if (spwanedAllFourCustomer == true)

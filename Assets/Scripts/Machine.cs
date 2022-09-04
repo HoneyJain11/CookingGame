@@ -75,6 +75,7 @@ public class Machine : Element<Machine>
         {
             Debug.Log("In working mode in coffee condition");
             MachineMode = MachineMode.WorkCompleted;
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
             EventHandler.Instance.InvokeCoffeeMachineWorkCompleted();
         }
             

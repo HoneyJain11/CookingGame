@@ -113,6 +113,7 @@ public class CoffeeMachineElement : MonoBehaviour
                 coffeeMachineList[i].transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = fullCoffeeGlass;
                 //coffeeMachineList[i].transform.GetChild(1).gameObject.GetComponent<CoffeeGlass>().itemId = 3;
                 coffeeMachineList[i].gameObject.GetComponent<Machine>().greenTimer.SetActive(false);
+                coffeeMachineList[i].gameObject.GetComponent<BoxCollider2D>().enabled = true;
                 Debug.Log(" " + coffeeMachineList[i].gameObject.GetComponent<Machine>().MachineMode);
                 break;
             }
@@ -147,6 +148,9 @@ public class CoffeeMachineElement : MonoBehaviour
                 coffeeGlass.transform.parent = coffeeMachineList[i].gameObject.transform;
                 coffeeGlass.transform.localPosition = new Vector3(-0.214f, -0.293f, 0f);
                 coffeeMachineList[i].gameObject.GetComponent<Machine>().OnWorkingMode();
+                Debug.Log("coffee machine name -  " + coffeeMachineList[i].gameObject.name);
+                Debug.Log("coffee machine has collider -  " + coffeeMachineList[i].gameObject.TryGetComponent(out BoxCollider2D col).ToString());
+                coffeeMachineList[i].gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 Debug.Log(" " + coffeeMachineList[i].gameObject.GetComponent<Machine>().MachineMode);
                 
             }

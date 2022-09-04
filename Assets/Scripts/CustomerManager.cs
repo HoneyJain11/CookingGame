@@ -22,7 +22,8 @@ public class CustomerManager : MonoBehaviour
     public Order order;
     public Vector3 gatePosition;
     public PlayerState playerState = PlayerState.Idle;
-   public int no = 5;
+    public int no = 5;
+    int customerWaitingTime = 10;
 
     private void OnEnable()
     {
@@ -90,6 +91,7 @@ public class CustomerManager : MonoBehaviour
             EventHandler.Instance.InvokeGetMenuItemsFromMenuManger(this.customerId);
             this.wishList.SetActive(true);
             this.playerState = PlayerState.Waiting;
+            CustomerTimer();
         }
 
     }
@@ -100,6 +102,8 @@ public class CustomerManager : MonoBehaviour
             MovePlayerOut();
             this.wishList.SetActive(false);
             this.playerState = PlayerState.GotOrder;
+            
+            
         }
 
     }
@@ -120,6 +124,25 @@ public class CustomerManager : MonoBehaviour
            
         }
     }
+
+    private async void CustomerTimer()
+    {
+        if(this.customerWaitingTime > 0)
+        {
+            await new WaitForSeconds(2f);
+            this.customerWaitingTime--;
+            CustomerTimer();
+
+        }
+        else
+        {
+            MovePlayerToGate(this.customerId);
+            this.playerState = PlayerState.NotGotOrder;
+            EventHandler.Instance.InvokeOnCallNextCustomer(this.gameObject.transform.position);
+        }
+
+    }
+
     private void OnDisable()
     {
         EventHandler.Instance.SendMenuListToCustomer -= SetRecipeOnWishList;
