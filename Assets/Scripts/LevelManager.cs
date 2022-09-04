@@ -44,7 +44,7 @@ public class LevelManager : GenericSingleton<LevelManager>
       //Set LeftTable Objects here eg. Toaster
       //placing leftside machine on proper leftsideslot.
       //  SetTableTopObjects(leftMachineSlots, breadSO.toastMachinePrefab);
-       EventHandler.Instance.InvokeGiveRecipeSOToMenuManager(levelDataSO.LevelRecipes, levelDataSO.LevelRecipes.Count);
+       EventHandler.Instance.InvokeGiveRecipeSOToMenuManager(levelDataSO.LevelRecipes, levelDataSO.maxRecipeOnWishList);
         //Set RightTable Objects here eg.Coffee Machine
         //placing rightside machine on proper rightsideslot.
         //SetTableTopObjects(rightMachineSlots, rightMachinePrefab);

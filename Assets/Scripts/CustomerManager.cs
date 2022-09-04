@@ -23,14 +23,17 @@ public class CustomerManager : MonoBehaviour
     public Vector3 gatePosition;
     public PlayerState playerState = PlayerState.Idle;
     public int no = 5;
-    int customerWaitingTime = 10;
+    // give customer time by level SO;
+    public int customerWaitingTime = 10;
+    GameObject newEmptyGameObject;
+    GameObject childObject;
 
     private void OnEnable()
     {
         EventHandler.Instance.GiveSlotTransformToCustomer += SetCustomerOnSlot;
         EventHandler.Instance.SendMenuListToCustomer += SetRecipeOnWishList;
         EventHandler.Instance.OrderDelivered += MovePlayerToGate;
-
+        customerWaitingTime = 10;
     }
    
     private void SetCustomerOnSlot(Vector3 target, int slotID)
@@ -51,24 +54,46 @@ public class CustomerManager : MonoBehaviour
          {
              this.order = order;
              this.orderID = order.OrderID;
-
+            
              for (int i = 0; i < order.RecipeList.Count; i++)
-             {
-                 GameObject newEmptyGameObject = Instantiate(emptyGameObject);
-                 newEmptyGameObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].parentImage;
-                 newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
-                 newEmptyGameObject.transform.parent = recipeSpwanPoints[i].gameObject.transform;
-                 newEmptyGameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
 
-                 for (int j = 0; j < order.RecipeList[i].childImages.Length; j++)
-                 {
-                     GameObject childObject = Instantiate(emptyGameObject);
-                     childObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].childImages[j];
-                     childObject.GetComponent<SpriteRenderer>().sortingOrder = newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder + 1 + j;
-                     childObject.transform.parent = newEmptyGameObject.gameObject.transform;
-                     childObject.transform.localPosition = new Vector3(0f, 0f, 0f);
+            {
+                if (recipeSpwanPoints[i].transform.childCount > 0)
+                {
+                    var parent = recipeSpwanPoints[i].transform.GetChild(0).gameObject;
+                    parent.GetComponent<SpriteRenderer>().sprite = order.RecipeList[i].parentImage;
 
-                 }
+                    for (int j = 0; j < order.RecipeList[i].childImages.Length; j++)
+                    {
+                        //newEmptyGameObject.transform.GetChild(j).GetComponent<SpriteRenderer>().sprite = order.RecipeList[i].childImages[j];
+                        parent.transform.GetChild(j).GetComponent<SpriteRenderer>().sprite = order.RecipeList[i].childImages[j];
+                    }
+
+                }
+                else
+                {
+                    newEmptyGameObject = Instantiate(emptyGameObject);
+                    newEmptyGameObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].parentImage;
+                    newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                    newEmptyGameObject.transform.parent = recipeSpwanPoints[i].gameObject.transform;
+                    newEmptyGameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
+
+                    for (int j = 0; j < order.RecipeList[i].childImages.Length; j++)
+                    {
+                        childObject = Instantiate(emptyGameObject);
+                        childObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].childImages[j];
+                        childObject.GetComponent<SpriteRenderer>().sortingOrder = newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder + 1 + j;
+                        childObject.transform.parent = newEmptyGameObject.gameObject.transform;
+                        childObject.transform.localPosition = new Vector3(0f, 0f, 0f);
+
+                    }
+                }
+
+                    
+
+
+                
+                
 
              }
 
@@ -136,9 +161,10 @@ public class CustomerManager : MonoBehaviour
         }
         else
         {
-            MovePlayerToGate(this.customerId);
+            this.wishList.SetActive(false);
+            MovePlayerOut();
             this.playerState = PlayerState.NotGotOrder;
-            EventHandler.Instance.InvokeOnCallNextCustomer(this.gameObject.transform.position);
+            EventHandler.Instance.InvokeOnCallNextCustomer(this.target);
         }
 
     }
@@ -148,5 +174,6 @@ public class CustomerManager : MonoBehaviour
         EventHandler.Instance.SendMenuListToCustomer -= SetRecipeOnWishList;
         EventHandler.Instance.GiveSlotTransformToCustomer -= SetCustomerOnSlot;
         EventHandler.Instance.OrderDelivered -= MovePlayerToGate;
+
     }
 }
