@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6d746c4a7b54d94aaac595a7f49d9a, type: 3}
+  m_Name: Coffee_glass_receipe
+  m_EditorClassIdentifier: 
+  parentImage: {fileID: 21300000, guid: cf015260354884e0d98255f3eb9c9118, type: 3}
+  childImages: []
+  recipeId: 3

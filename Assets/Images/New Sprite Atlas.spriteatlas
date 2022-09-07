@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 43c923d7bc1024012a9d6f96916bc3cc, type: 3}
+    - {fileID: 2800000, guid: d6b649795d1f54b3c9e916c814602d12, type: 3}
+    - {fileID: 2800000, guid: 25a820e788e3140b29ea06a6e7974030, type: 3}
+    - {fileID: 2800000, guid: f2a15cd6cf7174e29934c1c4fd9864d5, type: 3}
+    - {fileID: 2800000, guid: 75fc729acae4e413aa0516acb0f2c0b7, type: 3}
+    - {fileID: 2800000, guid: c3b7422a574f94089814b3255cf74854, type: 3}
+    - {fileID: 2800000, guid: 6197296e3f57a46e7a680b40f993c094, type: 3}
+    - {fileID: 2800000, guid: 27e5ddd615bbf47f6a5cb248a397dc0f, type: 3}
+    - {fileID: 2800000, guid: 5be1d23a42cb74465bcd694159325f2e, type: 3}
+    - {fileID: 2800000, guid: 69b7934dd27e6485bbd416c99ad67e6b, type: 3}
+    - {fileID: 2800000, guid: b2adb6ffa61d345a39d12cf5cc8084da, type: 3}
+    - {fileID: 2800000, guid: 3e84a61964d5f420d868083c742bc617, type: 3}
+    - {fileID: 2800000, guid: a8086d8dcb6ab42c8b933eaed6774c06, type: 3}
+    - {fileID: 2800000, guid: 599ec2be26023410bb5b5849503efd8c, type: 3}
+    - {fileID: 2800000, guid: e831262c1d1fb4520a708e761ff4396c, type: 3}
+    - {fileID: 2800000, guid: 65b0cb6ed104243aea3ac23293cd1f34, type: 3}
+    - {fileID: 2800000, guid: cf015260354884e0d98255f3eb9c9118, type: 3}
+    - {fileID: 2800000, guid: 505ce660f2f014f49b92f1a67e52328c, type: 3}
+    - {fileID: 2800000, guid: 6592e64f41c54406899dec97f229472f, type: 3}
+    - {fileID: 2800000, guid: 33de521d3ce5344b2a84c447d6d60f38, type: 3}
+    - {fileID: 2800000, guid: 152adc2769100414c9cebb106eed163d, type: 3}
+    - {fileID: 2800000, guid: 562df337896334d62acfd5e7e386493d, type: 3}
+    - {fileID: 2800000, guid: 6c8ba53e6351f4141afb4f1bf6d6b142, type: 3}
+    - {fileID: 2800000, guid: e6df03a61afd24a9ebf02ad0df60a55a, type: 3}
+    - {fileID: 2800000, guid: 12f06c5b886d648cfae39ba3ed2b9b5b, type: 3}
+    - {fileID: 2800000, guid: d2acc4a84e2b54d9799a8d2b55ac5457, type: 3}
+    - {fileID: 2800000, guid: e6afdc2d6572b4dc9bd256b662f52d19, type: 3}
+    - {fileID: 2800000, guid: fc548ea8db6e94f18bbfee6eef38bc10, type: 3}
+    - {fileID: 21300000, guid: fc548ea8db6e94f18bbfee6eef38bc10, type: 3}
+    - {fileID: 2800000, guid: ba2f3b8dfd05544f585f69539777e030, type: 3}
+    - {fileID: 2800000, guid: 195e6a25ed7314be9a983e395ef8314c, type: 3}
+    - {fileID: 2800000, guid: 7102c6ffe88a94eab9e1d03f5bf6fcf1, type: 3}
+    - {fileID: 2800000, guid: 43289945380624b6bae6490822de2ddb, type: 3}
+    - {fileID: 2800000, guid: fc1f0b8bd0fba40acac8054ba3327b8a, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: cf015260354884e0d98255f3eb9c9118, type: 3}
+  - {fileID: 21300000, guid: 505ce660f2f014f49b92f1a67e52328c, type: 3}
+  - {fileID: 21300000, guid: 195e6a25ed7314be9a983e395ef8314c, type: 3}
+  - {fileID: 21300000, guid: 43289945380624b6bae6490822de2ddb, type: 3}
+  - {fileID: 21300000, guid: e6df03a61afd24a9ebf02ad0df60a55a, type: 3}
+  - {fileID: 21300000, guid: f2a15cd6cf7174e29934c1c4fd9864d5, type: 3}
+  - {fileID: 21300000, guid: 27e5ddd615bbf47f6a5cb248a397dc0f, type: 3}
+  - {fileID: 21300000, guid: 152adc2769100414c9cebb106eed163d, type: 3}
+  - {fileID: 21300000, guid: 562df337896334d62acfd5e7e386493d, type: 3}
+  - {fileID: 21300000, guid: 43c923d7bc1024012a9d6f96916bc3cc, type: 3}
+  - {fileID: 21300000, guid: 25a820e788e3140b29ea06a6e7974030, type: 3}
+  - {fileID: 21300000, guid: d2acc4a84e2b54d9799a8d2b55ac5457, type: 3}
+  - {fileID: 21300000, guid: fc548ea8db6e94f18bbfee6eef38bc10, type: 3}
+  - {fileID: 21300000, guid: 3e84a61964d5f420d868083c742bc617, type: 3}
+  - {fileID: 21300000, guid: d6b649795d1f54b3c9e916c814602d12, type: 3}
+  - {fileID: 21300000, guid: c3b7422a574f94089814b3255cf74854, type: 3}
+  - {fileID: 21300000, guid: 5be1d23a42cb74465bcd694159325f2e, type: 3}
+  - {fileID: 21300000, guid: 75fc729acae4e413aa0516acb0f2c0b7, type: 3}
+  - {fileID: 21300000, guid: 12f06c5b886d648cfae39ba3ed2b9b5b, type: 3}
+  - {fileID: 21300000, guid: fc1f0b8bd0fba40acac8054ba3327b8a, type: 3}
+  - {fileID: 21300000, guid: e831262c1d1fb4520a708e761ff4396c, type: 3}
+  - {fileID: 21300000, guid: 33de521d3ce5344b2a84c447d6d60f38, type: 3}
+  - {fileID: 21300000, guid: e6afdc2d6572b4dc9bd256b662f52d19, type: 3}
+  - {fileID: 21300000, guid: 69b7934dd27e6485bbd416c99ad67e6b, type: 3}
+  - {fileID: 21300000, guid: ba2f3b8dfd05544f585f69539777e030, type: 3}
+  - {fileID: 21300000, guid: a8086d8dcb6ab42c8b933eaed6774c06, type: 3}
+  - {fileID: 21300000, guid: 6c8ba53e6351f4141afb4f1bf6d6b142, type: 3}
+  - {fileID: 21300000, guid: 6197296e3f57a46e7a680b40f993c094, type: 3}
+  - {fileID: 21300000, guid: 65b0cb6ed104243aea3ac23293cd1f34, type: 3}
+  - {fileID: 21300000, guid: 599ec2be26023410bb5b5849503efd8c, type: 3}
+  - {fileID: 21300000, guid: 6592e64f41c54406899dec97f229472f, type: 3}
+  - {fileID: 21300000, guid: b2adb6ffa61d345a39d12cf5cc8084da, type: 3}
+  - {fileID: 21300000, guid: 7102c6ffe88a94eab9e1d03f5bf6fcf1, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - glass level 1
+  - glass_1
+  - Table top
+  - toast level 1
+  - penuts level 1
+  - bread level 1
+  - chocolate level 1
+  - GREEN-TIMER_03
+  - Machine Level 1
+  - bread 1
+  - bread egg 1
+  - Strawbarry level 1
+  - table 1 breckfast  bg
+  - eggs trey
+  - bread chocolate level 1
+  - bread Plate _Perspective 1
+  - chocolate trey
+  - bread penut butter 1
+  - penuts trey
+  - Toaster-_level_1
+  - FIRE_03
+  - GREEN-TIMER_02
+  - Strawbarry trey
+  - Dusrtbin
+  - Table bottom
+  - FIRE_01
+  - MENU-LIST
+  - bread strowbarry 1
+  - FIRE_RED_02
+  - FIRE_02
+  - GREEN-TIMER_01
+  - eggs level 1
+  - toast level 01
+  m_Tag: New Sprite Atlas
+  m_IsVariant: 0

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63247b7b68ee544b9b2181ff8d0ac2d5, type: 3}
+  m_Name: Level1Data
+  m_EditorClassIdentifier: 
+  MaxToasterMachine: 2
+  MaxCoffeeMachine: 1
+  MaxPlates: 2
+  MaxTrays: 1
+  MaxCustomers: 6
+  maxRecipeOnWishList: 1
+  LevelRecipes:
+  - {fileID: 11400000, guid: 23815467a3f8d44249f10a96c393acee, type: 2}
+  - {fileID: 11400000, guid: da31124541c4b4aed8f3190fc1275457, type: 2}
+  - {fileID: 11400000, guid: 451033663c9104fc89b7d410b229f372, type: 2}
