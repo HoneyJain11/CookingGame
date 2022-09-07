@@ -54,24 +54,10 @@ public class CustomerManager : MonoBehaviour
          {
              this.order = order;
              this.orderID = order.OrderID;
-            
-             for (int i = 0; i < order.RecipeList.Count; i++)
-
+            // Have to changed this logic with down comment code. to overcome instiate- destroy
+            for (int i = 0; i < order.RecipeList.Count; i++)
             {
-                if (recipeSpwanPoints[i].transform.childCount > 0)
-                {
-                    var parent = recipeSpwanPoints[i].transform.GetChild(0).gameObject;
-                    parent.GetComponent<SpriteRenderer>().sprite = order.RecipeList[i].parentImage;
-
-                    for (int j = 0; j < order.RecipeList[i].childImages.Length; j++)
-                    {
-                        //newEmptyGameObject.transform.GetChild(j).GetComponent<SpriteRenderer>().sprite = order.RecipeList[i].childImages[j];
-                        parent.transform.GetChild(j).GetComponent<SpriteRenderer>().sprite = order.RecipeList[i].childImages[j];
-                    }
-
-                }
-                else
-                {
+               
                     newEmptyGameObject = Instantiate(emptyGameObject);
                     newEmptyGameObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].parentImage;
                     newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
@@ -87,17 +73,9 @@ public class CustomerManager : MonoBehaviour
                         childObject.transform.localPosition = new Vector3(0f, 0f, 0f);
 
                     }
-                }
+            }
 
-                    
-
-
-                
-                
-
-             }
-
-         }
+        }
     }
 
     private async void MovePlayer()
@@ -143,7 +121,8 @@ public class CustomerManager : MonoBehaviour
         }
         else
         {
-            this.playerState = PlayerState.Idle; 
+            this.playerState = PlayerState.Idle;
+            SetImageNullOfWishListChild();
             CustomerPooler.Instance.SetPooledObjectInPool(this.gameObject);
             this.gameObject.SetActive(false);
            
@@ -168,6 +147,14 @@ public class CustomerManager : MonoBehaviour
         }
 
     }
+    private void SetImageNullOfWishListChild()
+    {
+        for (int i = 0; i < this.order.RecipeList.Count; i++)
+        {
+            Destroy(this.recipeSpwanPoints[i].transform.GetChild(0).gameObject);
+        }
+           
+    }
 
     private void OnDisable()
     {
@@ -177,3 +164,57 @@ public class CustomerManager : MonoBehaviour
 
     }
 }
+
+
+//Have to changed logic in this code new code but not proper so, have to do proper and then put in SetRecipeOnWishList() method.
+/*
+for (int i = 0; i < order.RecipeList.Count; i++)
+{
+    if (recipeSpwanPoints[i].transform.childCount > 0)
+    {
+        var parent = recipeSpwanPoints[i].transform.GetChild(0).gameObject;
+        parent.GetComponent<SpriteRenderer>().sprite = order.RecipeList[i].parentImage;
+
+        for (int j = 0; j < order.RecipeList[i].childImages.Length; j++)
+        {
+            if (parent.transform.GetChild(j) != null)
+            {
+                parent.transform.GetChild(j).GetComponent<SpriteRenderer>().sprite = order.RecipeList[i].childImages[j];
+            }
+            else
+            {
+                childObject = Instantiate(emptyGameObject);
+                childObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].childImages[j];
+                childObject.GetComponent<SpriteRenderer>().sortingOrder = newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder + 1 + j;
+                childObject.transform.parent = newEmptyGameObject.gameObject.transform;
+                childObject.transform.localPosition = new Vector3(0f, 0f, 0f);
+
+
+            }
+
+
+        }
+
+
+    }
+    else
+    {
+        newEmptyGameObject = Instantiate(emptyGameObject);
+        newEmptyGameObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].parentImage;
+        newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        newEmptyGameObject.transform.parent = recipeSpwanPoints[i].gameObject.transform;
+        newEmptyGameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
+
+        for (int j = 0; j < order.RecipeList[i].childImages.Length; j++)
+        {
+            childObject = Instantiate(emptyGameObject);
+            childObject.AddComponent<SpriteRenderer>().sprite = order.RecipeList[i].childImages[j];
+            childObject.GetComponent<SpriteRenderer>().sortingOrder = newEmptyGameObject.GetComponent<SpriteRenderer>().sortingOrder + 1 + j;
+            childObject.transform.parent = newEmptyGameObject.gameObject.transform;
+            childObject.transform.localPosition = new Vector3(0f, 0f, 0f);
+
+        }
+    }
+
+
+}*/
