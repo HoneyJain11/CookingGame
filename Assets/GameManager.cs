@@ -25,14 +25,17 @@ public class GameManager : MonoBehaviour
 
         float screenRatio = (float)Screen.width / (float) Screen.height;
         float targetRatio = backgroundImage.bounds.size.x / backgroundImage.bounds.size.y;
+
+
         if(screenRatio >= targetRatio)
-        {
-            Camera.main.orthographicSize = backgroundImage.bounds.size.y / 2;
-        }
-        else
-        {
-            float differenceInSize = targetRatio / screenRatio;
-            Camera.main.orthographicSize = (backgroundImage.bounds.size.y / 2)*differenceInSize;
+         {
+             Camera.main.orthographicSize = backgroundImage.bounds.size.y / 2;
+         }
+         else
+         {
+            
+             float differenceInSize = targetRatio / screenRatio;
+             Camera.main.orthographicSize = (backgroundImage.bounds.size.y / 2) * differenceInSize;
         }
     }
 }

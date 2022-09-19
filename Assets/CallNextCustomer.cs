@@ -32,6 +32,7 @@ public class CallNextCustomer : MonoBehaviour
             }
             customerSlotManager.customerList.Add(customer);
             EventHandler.Instance.InvokeGiveSlotTransformToCustomer(pos, k);
+            LevelManager.Instance.noOfCustomerSpwaned++;
             k++;
 
         }

@@ -27,13 +27,20 @@ public class CustomerManager : MonoBehaviour
     public int customerWaitingTime = 10;
     GameObject newEmptyGameObject;
     GameObject childObject;
-
+    [SerializeField]
+    GameObject greenProgressLine;
+    [SerializeField]
+    GameObject timerBarBackGround;
+    Vector2 progressLineLocalScale;
+    Vector2 saveGreenProgressBarValue;
     private void OnEnable()
     {
         EventHandler.Instance.GiveSlotTransformToCustomer += SetCustomerOnSlot;
         EventHandler.Instance.SendMenuListToCustomer += SetRecipeOnWishList;
         EventHandler.Instance.OrderDelivered += MovePlayerToGate;
         customerWaitingTime = 10;
+        saveGreenProgressBarValue = greenProgressLine.transform.localScale;
+        progressLineLocalScale = greenProgressLine.transform.localScale;
     }
    
     private void SetCustomerOnSlot(Vector3 target, int slotID)
@@ -94,6 +101,8 @@ public class CustomerManager : MonoBehaviour
             EventHandler.Instance.InvokeGetMenuItemsFromMenuManger(this.customerId);
             this.wishList.SetActive(true);
             this.playerState = PlayerState.Waiting;
+            this.greenProgressLine.SetActive(true);
+            this.timerBarBackGround.SetActive(true);
             CustomerTimer();
         }
 
@@ -134,13 +143,19 @@ public class CustomerManager : MonoBehaviour
         if(this.customerWaitingTime > 0)
         {
             await new WaitForSeconds(2f);
+            this.progressLineLocalScale.y = this.progressLineLocalScale.y - Math.Abs(0.1f);
+            this.greenProgressLine.transform.localScale = this.progressLineLocalScale;
             this.customerWaitingTime--;
             CustomerTimer();
 
         }
         else
         {
+
             this.wishList.SetActive(false);
+            greenProgressLine.transform.localScale = saveGreenProgressBarValue;
+            this.greenProgressLine.SetActive(false);
+            this.timerBarBackGround.SetActive(false);
             MovePlayerOut();
             this.playerState = PlayerState.NotGotOrder;
             EventHandler.Instance.InvokeOnCallNextCustomer(this.target);

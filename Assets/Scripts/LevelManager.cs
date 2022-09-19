@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class LevelManager : GenericSingleton<LevelManager>
@@ -34,17 +35,36 @@ public class LevelManager : GenericSingleton<LevelManager>
     //[SerializeField]
     //LeftSideMachineSO toasterSO;
     [SerializeField] LevelData levelDataSO;
+    //To Check Double Click Parameters.
+    private float firstClickTime, timeBetweenClick;
+    private bool coroutineAllowed;
+    private int clickCounter;
+    [SerializeField]
+    GameObject goalPanel;
+    [SerializeField]
+    TextMeshProUGUI levelGoalText;
+    [SerializeField]
+    TextMeshProUGUI totalCustomerText;
+    [SerializeField]
+    GameObject WinLosePanel;
+    [SerializeField]
+    TextMeshProUGUI WinLoseText;
+    public int levelGoal = 0;
+    public int noOfCustomerSpwaned = 0;
     private void OnEnable()
     {
        // EventHandler.Instance.InvokeGiveRecipeSOToMenuManager(levelDataSO.LevelRecipes, levelDataSO.LevelRecipes.Count);
     }
 
-    private void Start()
-    { //placing all the object on it's specific slot
-      //Set LeftTable Objects here eg. Toaster
-      //placing leftside machine on proper leftsideslot.
-      //  SetTableTopObjects(leftMachineSlots, breadSO.toastMachinePrefab);
-       EventHandler.Instance.InvokeGiveRecipeSOToMenuManager(levelDataSO.LevelRecipes, levelDataSO.maxRecipeOnWishList);
+    private  void Start()
+    {
+        SetUIOfLevel();
+      
+       //placing all the object on it's specific slot
+       //Set LeftTable Objects here eg. Toaster
+       //placing leftside machine on proper leftsideslot.
+       //  SetTableTopObjects(leftMachineSlots, breadSO.toastMachinePrefab);
+        EventHandler.Instance.InvokeGiveRecipeSOToMenuManager(levelDataSO.LevelRecipes, levelDataSO.maxRecipeOnWishList);
         //Set RightTable Objects here eg.Coffee Machine
         //placing rightside machine on proper rightsideslot.
         //SetTableTopObjects(rightMachineSlots, rightMachinePrefab);
@@ -53,21 +73,61 @@ public class LevelManager : GenericSingleton<LevelManager>
         //Set Tray Objects here eg. strawberry, chocolate, eggs, peanuts
         //placing tarys on correct slot.needs array of prefabs ex - chocolate tary prefab, peanuts tray prefab. 
         SetTableTopObjects(traySlots, trayPrefabs);
-        
+
         // Set Serving Area Objects on Table top here eg. 4 nos. of Plates
         //placing plates on correct slot.
-   
+
+        //To Check Double Click Parameters.
+        firstClickTime = 0f;
+        timeBetweenClick = 0.2f;
+        clickCounter = 0;
+        coroutineAllowed = true;
 
     }
+
+    private async void SetUIOfLevel()
+    {
+        levelGoalText.text = levelDataSO.levelGoalName;
+        totalCustomerText.text = totalCustomerText.text+levelDataSO.levelGoal.ToString();
+        goalPanel.SetActive(true);
+        await new WaitForSeconds(5f);
+        goalPanel.SetActive(false);
+
+    }
+    
     private void Update()
     {
         MouseClick();
+
+        if(noOfCustomerSpwaned == levelDataSO.MaxCustomers )
+        {
+            OpenWinLosePanel();
+
+        }
     }
+
+    private void OpenWinLosePanel()
+    {
+        if (levelGoal >= levelDataSO.levelGoal)
+        {
+            WinLosePanel.SetActive(true);
+            WinLoseText.text = "Congratulations You Passed Level";
+        }
+       
+
+        if (levelGoal != levelDataSO.levelGoal)
+        {
+            WinLosePanel.SetActive(true);
+            WinLoseText.text = "Opps You Failed Level";
+        }
+    }
+
     // checking the mouseclick , on which raycast is hitting
     public void MouseClick()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            clickCounter += 1;
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector3.zero);
 
@@ -139,11 +199,51 @@ public class LevelManager : GenericSingleton<LevelManager>
                 }
                 
             }
-           
+            if(clickCounter == 1 && coroutineAllowed)
+            {
+                firstClickTime = Time.time;
+                DoubleClickDetection();
+
+
+
+            }
+
+
+    }
+
+    private async void DoubleClickDetection()
+    {
+        coroutineAllowed = false;
+        while (Time.time < firstClickTime + timeBetweenClick)
+        {
+            if (clickCounter == 2)
+            {
+                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                 RaycastHit2D hit = Physics2D.Raycast(pos, Vector3.zero);
+
+                 if (hit && hit.collider != null)
+                 {
+                     if (hit.collider.GetComponent<PlateElement>())
+                     {
+                         Debug.Log("Click on paltes");
+                         Debug.Log("Collider name object paltes " + hit.collider.gameObject);
+                         EventHandler.Instance.InvokeOnRemoveBreadToDustBin(hit.collider.gameObject);
+                         break;
+
+                     }
+
+                 }
+               // Debug.Log("Click on paltes");
+               
+            }
+            await new WaitForEndOfFrame();
         }
+            clickCounter = 0;
+            firstClickTime = 0f;
+            coroutineAllowed = true;
         
-    
-    
+    }
+
     private void SetTableTopObjects(List<GameObject> SpawnSlots, GameObject initiatePrefab )
     {
         for (int i = 0; i < levelDataSO.MaxTrays; i++)

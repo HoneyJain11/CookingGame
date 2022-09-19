@@ -26,6 +26,7 @@ public class EventHandler : GenericSingleton<EventHandler>
     public event Action OnAgainStartCoffeeMachine;
     public event Action<int> OrderDelivered;
     public event Action<Vector3> OnCallNextCustomer;
+    public event Action<GameObject> OnRemoveBreadToDustBin;
 
     public void InvokeOnBreadClickEvent()
     {
@@ -130,6 +131,11 @@ public class EventHandler : GenericSingleton<EventHandler>
     public void InvokeOnCallNextCustomer(Vector3 pos)
     {
         OnCallNextCustomer?.Invoke(pos);
+    }
+
+    public void InvokeOnRemoveBreadToDustBin(GameObject wasteBread)
+    {
+        OnRemoveBreadToDustBin?.Invoke(wasteBread);
     }
 }
 

@@ -51,6 +51,7 @@ public class CustomerPooler : GenericSingleton<CustomerPooler>
     // Queue Logic of Object pooling.
     public List<ObjectPoolItem> objectPoolItems;
     private Queue <GameObject> pooledRequireObjects;
+    public List<Sprite> characterSprite;
     [SerializeField] LevelData levelDataSO;
 
     public Queue<GameObject> PooledRequireObjects { get => pooledRequireObjects; set => pooledRequireObjects = value; }
@@ -63,6 +64,7 @@ public class CustomerPooler : GenericSingleton<CustomerPooler>
             for (int i = 0; i < levelDataSO.MaxCustomers; i++)
             {
                 GameObject gameObject = (GameObject)Instantiate(poolItem.objectPrefab);
+                gameObject.GetComponent<SpriteRenderer>().sprite = characterSprite[i];
                 gameObject.SetActive(false);
                 gameObject.GetComponent<CustomerManager>().customerId = i;
                 PooledRequireObjects.Enqueue(gameObject);

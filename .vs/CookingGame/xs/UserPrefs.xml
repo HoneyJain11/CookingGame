@@ -1,26 +1,26 @@
 ﻿<Properties StartupConfiguration="{FC74B7CA-8782-3C04-1EFD-F30056E41432}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CustomerManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Element.cs">
     <Files>
-      <File FileName="Assets/Scripts/CustomerManager.cs" Line="157" Column="6" IsPinned="True" />
-      <File FileName="Assets/Scripts/Recipe.cs" IsPinned="True" />
-      <File FileName="Assets/MenuListManager.cs" IsPinned="True" />
-      <File FileName="Assets/CallNextCustomer.cs" IsPinned="True" />
-      <File FileName="Assets/Scripts/CustomerSlotManager.cs" Line="66" Column="1" />
-      <File FileName="Assets/Scripts/CoffeeMachineElement.cs" />
-      <File FileName="Assets/Scripts/Enum/PlayerState.cs" />
-      <File FileName="Assets/Scripts/LevelManager.cs" />
-      <File FileName="Assets/GameManager.cs" />
-      <File FileName="Assets/Scripts/PlateElement.cs" />
-      <File FileName="Assets/Scripts/EventHandler.cs" />
-      <File FileName="Assets/Scripts/Singleton/GenericSingleton.cs" />
-      <File FileName="Assets/Scripts/BreadElement.cs" />
-      <File FileName="Assets/Scripts/Machine.cs" />
-      <File FileName="Assets/Scripts/Element.cs" />
+      <File FileName="Assets/Scripts/CustomerManager.cs" Line="169" Column="81" IsPinned="True" />
+      <File FileName="Assets/Scripts/Recipe.cs" Line="1" Column="1" IsPinned="True" />
+      <File FileName="Assets/MenuListManager.cs" Line="23" Column="33" IsPinned="True" />
+      <File FileName="Assets/CallNextCustomer.cs" Line="6" Column="3" IsPinned="True" />
+      <File FileName="Assets/Scripts/CustomerSlotManager.cs" Line="20" Column="25" />
+      <File FileName="Assets/Scripts/CoffeeMachineElement.cs" Line="12" Column="40" />
+      <File FileName="Assets/Scripts/Enum/PlayerState.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="119" Column="10" />
+      <File FileName="Assets/GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlateElement.cs" Line="17" Column="21" />
+      <File FileName="Assets/Scripts/EventHandler.cs" Line="123" Column="45" />
+      <File FileName="Assets/Scripts/Singleton/GenericSingleton.cs" Line="22" Column="2" />
+      <File FileName="Assets/Scripts/BreadElement.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Machine.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Element.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Plates.cs" />
       <File FileName="Assets/Scripts/ToasterElement.cs" />
       <File FileName="Assets/Scripts/ObjectPooling/CustomerPooler.cs" />
       <File FileName="Assets/Scripts/CoffeeGlass.cs" />
-      <File FileName="Assets/Scripts/Order.cs" />
+      <File FileName="Assets/Scripts/Order.cs" Line="27" Column="16" />
       <File FileName="Assets/Plugins/AsyncAwaitUtil/Source/IEnumeratorAwaitExtensions.cs" />
       <File FileName="Assets/Scripts/ToastBread.cs" />
       <File FileName="Assets/Scripts/Enum/PlateState.cs" />
@@ -33,16 +33,10 @@
         <State name="__root__">
           <Node name="CookingGame" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Plugins" expanded="True">
-                <Node name="AsyncAwaitUtil" expanded="True">
-                  <Node name="Source" expanded="True" />
-                </Node>
-              </Node>
               <Node name="Scripts" expanded="True">
                 <Node name="Enum" expanded="True" />
-                <Node name="ObjectPooling" expanded="True" />
                 <Node name="Singleton" expanded="True" />
-                <Node name="CustomerManager.cs" selected="True" />
+                <Node name="Element.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -52,7 +46,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="aef41d36-ac30-4aaa-95cd-00123f7b9c68" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="d44e6864-3c45-48e6-bd11-08fdcb87e92e" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Volumes/HDD3/CookingGame/CookingGame/Assets/Scripts/CoffeeMachineElement.cs" relfile="Assets/Scripts/CoffeeMachineElement.cs" line="116" column="1" />
