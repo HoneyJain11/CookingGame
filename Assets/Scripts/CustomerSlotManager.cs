@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public class CustomerSlotManager : MonoBehaviour
 {
-    int k = 4;
+    
     [SerializeField]
     List<Transform> slots;
     [SerializeField]
@@ -16,16 +16,41 @@ public class CustomerSlotManager : MonoBehaviour
     GameObject customerPrefab;
     public List <GameObject> customerList;
     bool spwanedAllFourCustomer = false;
-
+    GameObject moveWasteBread;
+    public bool movement;
+    public float speed;
+    [SerializeField] Transform dustBinTransform;
     private void Start()
     {
         EventHandler.Instance.OnReadyBreadClick += CheckItem;
+        EventHandler.Instance.OnRemoveBreadToDustBin += RemoveBreadToDustbin;
         slots = GetRandom(slots);
         customerList = new List<GameObject>();
-        SpwanCustomer();
+        
 
     }
+    private void RemoveBreadToDustbin(GameObject wastebread)
+    {
+        moveWasteBread = wastebread;
+        Debug.Log("Bread name - " + moveWasteBread);
+        movement = true;
+    }
 
+    private void Update()
+    {
+        //Bread Move To Dustbin logic .
+        if (movement == true)
+        {
+            var step = speed * Time.deltaTime; // calculate distance to move
+            moveWasteBread.transform.position = Vector3.MoveTowards(moveWasteBread.transform.position, dustBinTransform.position, step);
+            if (Vector3.Distance(moveWasteBread.transform.position, dustBinTransform.position) < 0.001f)
+            {
+               // dustBinTransform.position *= -1.0f;
+                movement = false;
+                Destroy(moveWasteBread);
+            }
+        }
+    }
     private void CheckItem(GameObject gameObject)
     {
         int itemCheckId;
@@ -162,8 +187,9 @@ public class CustomerSlotManager : MonoBehaviour
 
     }
 
-    private async void SpwanCustomer()
+    public async void SpwanCustomer()
     {
+
         for (int i = 0; i < slots.Count; i++)
         {
             GameObject customer = CustomerPooler.Instance.GetPooledObject();

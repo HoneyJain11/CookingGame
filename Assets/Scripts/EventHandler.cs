@@ -27,6 +27,7 @@ public class EventHandler : GenericSingleton<EventHandler>
     public event Action<int> OrderDelivered;
     public event Action<Vector3> OnCallNextCustomer;
     public event Action<GameObject> OnRemoveBreadToDustBin;
+    
 
     public void InvokeOnBreadClickEvent()
     {

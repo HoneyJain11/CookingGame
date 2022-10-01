@@ -34,11 +34,7 @@ public class LevelManager : GenericSingleton<LevelManager>
     List<Recipe> recipesSO;
     //[SerializeField]
     //LeftSideMachineSO toasterSO;
-    [SerializeField] LevelData levelDataSO;
-    //To Check Double Click Parameters.
-    private float firstClickTime, timeBetweenClick;
-    private bool coroutineAllowed;
-    private int clickCounter;
+    public LevelData levelDataSO;
     [SerializeField]
     GameObject goalPanel;
     [SerializeField]
@@ -51,9 +47,15 @@ public class LevelManager : GenericSingleton<LevelManager>
     TextMeshProUGUI WinLoseText;
     public int levelGoal = 0;
     public int noOfCustomerSpwaned = 0;
+    [SerializeField] CustomerSlotManager customerSlotManager;
+    //To Check Double Click Parameters.
+    private double doubleClickTime = 0.25f;
+
+
     private void OnEnable()
     {
-       // EventHandler.Instance.InvokeGiveRecipeSOToMenuManager(levelDataSO.LevelRecipes, levelDataSO.LevelRecipes.Count);
+        // EventHandler.Instance.InvokeGiveRecipeSOToMenuManager(levelDataSO.LevelRecipes, levelDataSO.LevelRecipes.Count);
+      
     }
 
     private  void Start()
@@ -78,12 +80,64 @@ public class LevelManager : GenericSingleton<LevelManager>
         //placing plates on correct slot.
 
         //To Check Double Click Parameters.
-        firstClickTime = 0f;
-        timeBetweenClick = 0.2f;
-        clickCounter = 0;
-        coroutineAllowed = true;
-
+       
+            StartCoroutine(ClickListener());
+        
     }
+
+    private IEnumerator ClickListener()
+    {
+        while (enabled)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                yield return MouseClickDouble();
+            }
+            yield return null;
+        }
+    }
+
+    private IEnumerator MouseClickDouble()
+    {
+        yield return new WaitForEndOfFrame();
+
+        float timeCount = 0;
+        while (timeCount < doubleClickTime)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                DoubleClick();
+                yield break;
+            }
+            timeCount += Time.deltaTime;
+            yield return null;
+        }
+      //  SingleClick();
+    }
+
+    private void DoubleClick()
+    {
+        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(pos, Vector3.zero);
+        if (hit && hit.collider != null)
+        {
+             if (hit.collider.GetComponent<Plates>() != null && hit.collider.transform.GetChild(0) != null)
+            {
+                //DoubleClick
+                Debug.Log("Double click found");
+                GameObject wasteBread = hit.collider.transform.GetChild(0).gameObject;
+                Debug.Log("bread -  " + wasteBread.name);
+                EventHandler.Instance.InvokeOnRemoveBreadToDustBin(wasteBread);
+                hit.collider.GetComponent<Plates>().plateStateBread = PlateStateBread.Free;
+
+            }
+        }
+    }
+    private void SingleClick()
+    {
+       // MouseClick();
+    }
+
 
     private async void SetUIOfLevel()
     {
@@ -92,21 +146,16 @@ public class LevelManager : GenericSingleton<LevelManager>
         goalPanel.SetActive(true);
         await new WaitForSeconds(5f);
         goalPanel.SetActive(false);
+        customerSlotManager.SpwanCustomer();
 
     }
     
     private void Update()
     {
         MouseClick();
-
-        if(noOfCustomerSpwaned == levelDataSO.MaxCustomers )
-        {
-            OpenWinLosePanel();
-
-        }
     }
 
-    private void OpenWinLosePanel()
+    public void OpenWinLosePanel()
     {
         if (levelGoal >= levelDataSO.levelGoal)
         {
@@ -127,123 +176,84 @@ public class LevelManager : GenericSingleton<LevelManager>
     {
         if (Input.GetMouseButtonDown(0))
         {
-            clickCounter += 1;
+
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector3.zero);
 
-            if(hit && hit.collider != null )
+            if (hit && hit.collider != null)
             {
-                          
-                    if ( hit.collider.GetComponent<BreadElement>()!=null)
-                     {
-                         Debug.Log("Click on Bread");
 
-                         EventHandler.Instance.InvokeOnBreadClickEvent();
+                if (hit.collider.GetComponent<BreadElement>() != null)
+                {
+                    Debug.Log("Click on Bread");
 
-                     }
+                    EventHandler.Instance.InvokeOnBreadClickEvent();
 
-                     else if(hit.collider.GetComponent<Machine>()!=null && hit.collider.GetComponent<Machine>().machineType == MachineType.Toaster)
-                     {
-                         print("Clicked On toaster");
-                        int machineId = hit.collider.GetComponent<Machine>().machineId;
-                         EventHandler.Instance.InvokeOnToasterClickEvent(machineId);
-
-                     }
-                     else if(hit.collider.GetComponent<Machine>() != null && hit.collider.GetComponent<Machine>().machineType == MachineType.CoffeeMachine)
-                     {
-                         print("Clicked On coffe machine");
-                         int machineId = hit.collider.GetComponent<Machine>().machineId;
-                         GameObject gameObject = hit.collider.gameObject;
-                         EventHandler.Instance.InvokeOnReadyBreadClickEvent(gameObject);
-                     }
-                     else if (hit.collider.GetComponent<Plates>() != null)
-                     {
-                         Debug.Log("platestate -  " + hit.collider.GetComponent<Plates>().plateState);
-                         if(hit.collider.GetComponent<Plates>().plateState != PlateState.Unlocked)
-                         hit.collider.GetComponent<Plates>().plateState = PlateState.Unlocked;
-                         Debug.Log("platestate -  " + hit.collider.GetComponent<Plates>().plateState);
-                         Debug.Log("hit gameobject -  " + hit.collider.gameObject);
-                         GameObject gameObject = hit.collider.gameObject;
-                         EventHandler.Instance.InvokeOnReadyBreadClickEvent(gameObject);
-                     }
-
-
-                     else if (hit.collider.GetComponent<Trays>() != null)
-                     {
-                         if (hit.collider.GetComponent<Trays>().trayType == TrayType.StrawberryTray)
-                         {
-                             Debug.Log("hit with strawberry Tray");
-                             EventHandler.Instance.InvokeOnStrawberryClickEvent();
-                         }
-                         else if (hit.collider.GetComponent<Trays>().trayType == TrayType.ChocolateTray)
-                         {
-                             Debug.Log("hit with chocolate Tray");
-                             EventHandler.Instance.InvokeOnChocolateClickEvent();
-                         }
-                         else if (hit.collider.GetComponent<Trays>().trayType == TrayType.PeanutTray)
-                         {
-                             Debug.Log("hit with Penaut Tray");
-                             EventHandler.Instance.InvokeOnPenautClickEvent();
-                         }
-                         else if (hit.collider.GetComponent<Trays>().trayType == TrayType.EggTray)
-                         {
-                             Debug.Log("hit with egg Tray");
-                             EventHandler.Instance.InvokeOnEggClickEvent();
-                         }
-
-                     }
-                    else
-                    {
-                        Handheld.Vibrate();
-                    }
                 }
+
+                else if (hit.collider.GetComponent<Machine>() != null && hit.collider.GetComponent<Machine>().machineType == MachineType.Toaster)
+                {
+                    print("Clicked On toaster");
+                    int machineId = hit.collider.GetComponent<Machine>().machineId;
+                    EventHandler.Instance.InvokeOnToasterClickEvent(machineId);
+
+                }
+                else if (hit.collider.GetComponent<Machine>() != null && hit.collider.GetComponent<Machine>().machineType == MachineType.CoffeeMachine)
+                {
+                    print("Clicked On coffe machine");
+                    int machineId = hit.collider.GetComponent<Machine>().machineId;
+                    GameObject gameObject = hit.collider.gameObject;
+                    EventHandler.Instance.InvokeOnReadyBreadClickEvent(gameObject);
+                }
+                else if (hit.collider.GetComponent<Plates>() != null)
+                {
+                    Debug.Log("platestate -  " + hit.collider.GetComponent<Plates>().plateState);
+                    if (hit.collider.GetComponent<Plates>().plateState != PlateState.Unlocked)
+                        hit.collider.GetComponent<Plates>().plateState = PlateState.Unlocked;
+                    Debug.Log("platestate -  " + hit.collider.GetComponent<Plates>().plateState);
+                    Debug.Log("hit gameobject -  " + hit.collider.gameObject);
+                    GameObject gameObject = hit.collider.gameObject;
+                    EventHandler.Instance.InvokeOnReadyBreadClickEvent(gameObject);
+                }
+
+
+                else if (hit.collider.GetComponent<Trays>() != null)
+                {
+                    if (hit.collider.GetComponent<Trays>().trayType == TrayType.StrawberryTray)
+                    {
+                        Debug.Log("hit with strawberry Tray");
+                        EventHandler.Instance.InvokeOnStrawberryClickEvent();
+                    }
+                    else if (hit.collider.GetComponent<Trays>().trayType == TrayType.ChocolateTray)
+                    {
+                        Debug.Log("hit with chocolate Tray");
+                        EventHandler.Instance.InvokeOnChocolateClickEvent();
+                    }
+                    else if (hit.collider.GetComponent<Trays>().trayType == TrayType.PeanutTray)
+                    {
+                        Debug.Log("hit with Penaut Tray");
+                        EventHandler.Instance.InvokeOnPenautClickEvent();
+                    }
+                    else if (hit.collider.GetComponent<Trays>().trayType == TrayType.EggTray)
+                    {
+                        Debug.Log("hit with egg Tray");
+                        EventHandler.Instance.InvokeOnEggClickEvent();
+                    }
+
+                }
+                else
+                {
+                    Handheld.Vibrate();
+                }
+            }
                 
-            }
-            if(clickCounter == 1 && coroutineAllowed)
-            {
-                firstClickTime = Time.time;
-                DoubleClickDetection();
-
-
-
-            }
+         }
+            
 
 
     }
 
-    private async void DoubleClickDetection()
-    {
-        coroutineAllowed = false;
-        while (Time.time < firstClickTime + timeBetweenClick)
-        {
-            if (clickCounter == 2)
-            {
-                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                 RaycastHit2D hit = Physics2D.Raycast(pos, Vector3.zero);
-
-                 if (hit && hit.collider != null)
-                 {
-                     if (hit.collider.GetComponent<PlateElement>())
-                     {
-                         Debug.Log("Click on paltes");
-                         Debug.Log("Collider name object paltes " + hit.collider.gameObject);
-                         EventHandler.Instance.InvokeOnRemoveBreadToDustBin(hit.collider.gameObject);
-                         break;
-
-                     }
-
-                 }
-               // Debug.Log("Click on paltes");
-               
-            }
-            await new WaitForEndOfFrame();
-        }
-            clickCounter = 0;
-            firstClickTime = 0f;
-            coroutineAllowed = true;
-        
-    }
-
+   
     private void SetTableTopObjects(List<GameObject> SpawnSlots, GameObject initiatePrefab )
     {
         for (int i = 0; i < levelDataSO.MaxTrays; i++)

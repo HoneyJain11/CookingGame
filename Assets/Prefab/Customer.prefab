@@ -89,9 +89,10 @@ MonoBehaviour:
   gatePosition: {x: -14, y: 0.8, z: 0}
   playerState: 0
   no: 5
-  customerWaitingTime: 10
+  customerWaitingTime: 15
   greenProgressLine: {fileID: 8024838673588835277}
   timerBarBackGround: {fileID: 7772560041438089226}
+  levelDataSO: {fileID: 0}
 --- !u!212 &1123425239642622212
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -24,7 +24,7 @@ public class CustomerManager : MonoBehaviour
     public PlayerState playerState = PlayerState.Idle;
     public int no = 5;
     // give customer time by level SO;
-    public int customerWaitingTime = 10;
+    public int customerWaitingTime;
     GameObject newEmptyGameObject;
     GameObject childObject;
     [SerializeField]
@@ -33,12 +33,13 @@ public class CustomerManager : MonoBehaviour
     GameObject timerBarBackGround;
     Vector2 progressLineLocalScale;
     Vector2 saveGreenProgressBarValue;
+   
     private void OnEnable()
     {
         EventHandler.Instance.GiveSlotTransformToCustomer += SetCustomerOnSlot;
         EventHandler.Instance.SendMenuListToCustomer += SetRecipeOnWishList;
         EventHandler.Instance.OrderDelivered += MovePlayerToGate;
-        customerWaitingTime = 10;
+        customerWaitingTime = LevelManager.Instance.levelDataSO.levelCustomerWaitingTime;
         saveGreenProgressBarValue = greenProgressLine.transform.localScale;
         progressLineLocalScale = greenProgressLine.transform.localScale;
     }
@@ -133,8 +134,17 @@ public class CustomerManager : MonoBehaviour
             this.playerState = PlayerState.Idle;
             SetImageNullOfWishListChild();
             CustomerPooler.Instance.SetPooledObjectInPool(this.gameObject);
+            CheckWinOrLose();
             this.gameObject.SetActive(false);
            
+        }
+    }
+
+    private void CheckWinOrLose()
+    {
+        if(this.customerId == LevelManager.Instance.levelDataSO.totalCustomerWantToSpwan)
+        {
+            LevelManager.Instance.OpenWinLosePanel();
         }
     }
 
@@ -143,7 +153,7 @@ public class CustomerManager : MonoBehaviour
         if(this.customerWaitingTime > 0)
         {
             await new WaitForSeconds(2f);
-            this.progressLineLocalScale.y = this.progressLineLocalScale.y - Math.Abs(0.1f);
+            this.progressLineLocalScale.y -= Math.Abs(0.05f);
             this.greenProgressLine.transform.localScale = this.progressLineLocalScale;
             this.customerWaitingTime--;
             CustomerTimer();
