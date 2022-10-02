@@ -135,7 +135,7 @@ public class CustomerSlotManager : MonoBehaviour
                     int id = customer.GetComponent<CustomerManager>().customerId;
                     Vector3 pos = customer.transform.position;
                     EventHandler.Instance.InvokeOrderDelivered(id);
-                    LevelManager.Instance.levelGoal++;
+                    LevelManager.Instance.achievedLevelGoal++;
                     CallNextCustomer(pos);
                     break;
                 }

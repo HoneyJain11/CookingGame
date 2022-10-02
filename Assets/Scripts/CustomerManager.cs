@@ -33,17 +33,20 @@ public class CustomerManager : MonoBehaviour
     GameObject timerBarBackGround;
     Vector2 progressLineLocalScale;
     Vector2 saveGreenProgressBarValue;
-   
+
+
     private void OnEnable()
     {
         EventHandler.Instance.GiveSlotTransformToCustomer += SetCustomerOnSlot;
         EventHandler.Instance.SendMenuListToCustomer += SetRecipeOnWishList;
         EventHandler.Instance.OrderDelivered += MovePlayerToGate;
         customerWaitingTime = LevelManager.Instance.levelDataSO.levelCustomerWaitingTime;
-        saveGreenProgressBarValue = greenProgressLine.transform.localScale;
         progressLineLocalScale = greenProgressLine.transform.localScale;
     }
-   
+    private void Start()
+    {
+        saveGreenProgressBarValue = greenProgressLine.transform.localScale;
+    }
     private void SetCustomerOnSlot(Vector3 target, int slotID)
     {
 
@@ -114,6 +117,7 @@ public class CustomerManager : MonoBehaviour
         {
             MovePlayerOut();
             this.wishList.SetActive(false);
+
             this.playerState = PlayerState.GotOrder;
             
             
@@ -132,8 +136,11 @@ public class CustomerManager : MonoBehaviour
         else
         {
             this.playerState = PlayerState.Idle;
+            greenProgressLine.transform.localScale = saveGreenProgressBarValue;
+            this.greenProgressLine.SetActive(false);
+            this.timerBarBackGround.SetActive(false);
             SetImageNullOfWishListChild();
-            CustomerPooler.Instance.SetPooledObjectInPool(this.gameObject);
+            CustomerPooler.Instance.SetPooledObjectInPool(this.gameObject); 
             CheckWinOrLose();
             this.gameObject.SetActive(false);
            
@@ -142,14 +149,17 @@ public class CustomerManager : MonoBehaviour
 
     private void CheckWinOrLose()
     {
-        if(this.customerId == LevelManager.Instance.levelDataSO.totalCustomerWantToSpwan)
-        {
-            LevelManager.Instance.OpenWinLosePanel();
-        }
+        LevelManager.Instance.allCustomerReturnedToPool++;
+        LevelManager.Instance.OpenWinLosePanel();
+        
     }
 
     private async void CustomerTimer()
     {
+        if(this.playerState == PlayerState.GotOrder)
+        {
+            return;
+        }
         if(this.customerWaitingTime > 0)
         {
             await new WaitForSeconds(2f);
@@ -161,14 +171,14 @@ public class CustomerManager : MonoBehaviour
         }
         else
         {
+            if(this.playerState != PlayerState.GotOrder)
+            {
+                MovePlayerOut();
+                this.playerState = PlayerState.NotGotOrder;
+                EventHandler.Instance.InvokeOnCallNextCustomer(this.target);
 
-            this.wishList.SetActive(false);
-            greenProgressLine.transform.localScale = saveGreenProgressBarValue;
-            this.greenProgressLine.SetActive(false);
-            this.timerBarBackGround.SetActive(false);
-            MovePlayerOut();
-            this.playerState = PlayerState.NotGotOrder;
-            EventHandler.Instance.InvokeOnCallNextCustomer(this.target);
+            }
+
         }
 
     }

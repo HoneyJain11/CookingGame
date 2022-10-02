@@ -16,7 +16,7 @@ public class CallNextCustomer : MonoBehaviour
     { 
         Debug.Log("In Callnextcustomer method");
        
-        if (LevelManager.Instance.noOfCustomerSpwaned < LevelManager.Instance.levelDataSO.totalCustomerWantToSpwan -1)
+        if (LevelManager.Instance.noOfCustomerSpwaned < LevelManager.Instance.levelDataSO.totalCustomerWantToSpwan)
         {
 
             await new WaitUntil(customerSlotManager.CheckFirstFourCustomerSpwaned);
@@ -35,7 +35,7 @@ public class CallNextCustomer : MonoBehaviour
             EventHandler.Instance.InvokeGiveSlotTransformToCustomer(pos, LevelManager.Instance.noOfCustomerSpwaned);
             LevelManager.Instance.noOfCustomerSpwaned++;
         }
-
+       
     }
     private void OnDisable()
     {

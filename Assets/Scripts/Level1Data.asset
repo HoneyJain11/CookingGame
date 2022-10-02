@@ -15,14 +15,14 @@ MonoBehaviour:
   MaxToasterMachine: 2
   MaxCoffeeMachine: 1
   MaxPlates: 2
-  MaxTrays: 1
+  MaxTrays: 4
   MaxCustomers: 6
   totalCustomerWantToSpwan: 10
   maxRecipeOnWishList: 1
   LevelRecipes:
-  - {fileID: 11400000, guid: da31124541c4b4aed8f3190fc1275457, type: 2}
-  - {fileID: 11400000, guid: 23815467a3f8d44249f10a96c393acee, type: 2}
   - {fileID: 11400000, guid: 451033663c9104fc89b7d410b229f372, type: 2}
+  - {fileID: 11400000, guid: 23815467a3f8d44249f10a96c393acee, type: 2}
+  - {fileID: 11400000, guid: de048a7ab83b947568eeafdbbcf86d75, type: 2}
   levelCustomerWaitingTime: 20
   levelGoal: 5
   levelGoalName: Serve 5 Dishes To Customer

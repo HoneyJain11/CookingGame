@@ -45,12 +45,12 @@ public class LevelManager : GenericSingleton<LevelManager>
     GameObject WinLosePanel;
     [SerializeField]
     TextMeshProUGUI WinLoseText;
-    public int levelGoal = 0;
+    public int achievedLevelGoal = 0;
     public int noOfCustomerSpwaned = 0;
     [SerializeField] CustomerSlotManager customerSlotManager;
     //To Check Double Click Parameters.
     private double doubleClickTime = 0.25f;
-
+    public int allCustomerReturnedToPool = 0;
 
     private void OnEnable()
     {
@@ -157,18 +157,23 @@ public class LevelManager : GenericSingleton<LevelManager>
 
     public void OpenWinLosePanel()
     {
-        if (levelGoal >= levelDataSO.levelGoal)
+        if(allCustomerReturnedToPool == levelDataSO.totalCustomerWantToSpwan)
         {
-            WinLosePanel.SetActive(true);
-            WinLoseText.text = "Congratulations You Passed Level";
-        }
-       
+            if (achievedLevelGoal >= levelDataSO.levelGoal)
+            {
+                WinLosePanel.SetActive(true);
+                WinLoseText.text = "Congratulations You Passed Level";
+            }
 
-        if (levelGoal != levelDataSO.levelGoal)
-        {
-            WinLosePanel.SetActive(true);
-            WinLoseText.text = "Opps You Failed Level";
+
+            if (achievedLevelGoal < levelDataSO.levelGoal)
+            {
+                WinLosePanel.SetActive(true);
+                WinLoseText.text = "Opps You Failed Level";
+            }
+
         }
+        
     }
 
     // checking the mouseclick , on which raycast is hitting

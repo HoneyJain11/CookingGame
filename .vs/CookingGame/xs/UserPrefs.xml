@@ -1,5 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CustomerManager.cs">
+    <Files>
+      <File FileName="Assets/Scripts/CustomerSlotManager.cs" Line="148" Column="6" />
+      <File FileName="Assets/CallNextCustomer.cs" Line="7" Column="4" />
+      <File FileName="Assets/Scripts/Recipe.cs" Line="13" Column="25" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="136" Column="31" />
+      <File FileName="Assets/Scripts/CustomerManager.cs" Line="135" Column="10" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
@@ -7,15 +14,12 @@
             <Node name="Assembly-CSharp" expanded="True">
               <Node name="Assets" expanded="True">
                 <Node name="Scripts" expanded="True">
-                  <Node name="MenuListManager.cs" selected="True" />
+                  <Node name="CustomerManager.cs" selected="True" />
                 </Node>
               </Node>
             </Node>
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
